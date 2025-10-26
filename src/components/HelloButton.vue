@@ -3,7 +3,7 @@
         class="min-h-screen bg-background text-text flex items-center justify-center"
     >
         <button
-            class="bg-primary text-white px-md py-sm rounded hover:bg-secondary transition-colors"
+            class="bg-primary px-md py-sm rounded hover:bg-secondary transition-colors"
         >
             Kliknij mnie
         </button>

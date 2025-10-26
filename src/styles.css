@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+/* Default CSS */
+:root {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    --navbar: #000000;
+    --background: #16161a;
+
+    --selectedtext: #ffffff;
+    --unselectedtext: #777777;
+
+    --componentbackground: #404040;
+    --secondarycomponentbackground: #252525;
+    --greenbutton: #17ac6c;
+
+    --red: #b70000;
+    --green: #15aa6a;
+    --gold: #fdd90f;
+}
+
+@layer base {
+    body {
+        background-color: var(--background);
+        color: var(--selectedtext);
+    }
+}
+
+@layer navbar {
+    .bg-navbar {
+        background-color: var(--navbar);
+    }
+}

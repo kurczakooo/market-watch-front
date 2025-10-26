@@ -1,8 +1,6 @@
 <template>
-    <div
-        class="min-h-screen bg-background text-text flex flex-col items-center justify-center gap-6"
-    >
-        <h1 class="text-4xl font-sans">Witaj w Tailwind!</h1>
+    <div>
+        <h1>Witaj w Tailwind!</h1>
         <Home />
     </div>
 </template>
