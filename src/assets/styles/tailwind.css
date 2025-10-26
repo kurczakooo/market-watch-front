@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+/* Default CSS */
+:root {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    --background: #f0f4f8;
+    --text: #333333;
+}
