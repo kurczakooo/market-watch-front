@@ -1,10 +1,9 @@
-<template>
-    <div>
-        <h1>Witaj w Tailwind!</h1>
-        <Home />
-    </div>
-</template>
-
 <script setup lang="ts">
-import Home from './screens/Home.vue';
+import NavBar from './components/NavBar.vue';
+import { RouterView } from 'vue-router';
 </script>
+
+<template>
+    <NavBar />
+    <RouterView />
+</template>
