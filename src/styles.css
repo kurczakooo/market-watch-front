@@ -2,7 +2,7 @@
 
 /* Default CSS */
 :root {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Bahnschrift';
 
     --navbar: #000000;
     --background: #16161a;
@@ -22,12 +22,27 @@
 @layer base {
     body {
         background-color: var(--background);
-        color: var(--selectedtext);
+        color: var(--unselectedtext);
     }
 }
 
 @layer navbar {
     .bg-navbar {
         background-color: var(--navbar);
+        color: var(--selectedtext);
+    }
+
+    .tab-title {
+        color: var(--unselectedtext);
+        font-size: 1.1rem;
+    }
+
+    .tab-title:hover {
+        color: var(--selectedtext);
+    }
+
+    .selected {
+        color: var(--selectedtext);
+        font-weight: bold;
     }
 }

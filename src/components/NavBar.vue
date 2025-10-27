@@ -10,18 +10,18 @@ const assetData = ref(null);
 </script>
 
 <template>
-    <nav
-        class="bg-white border-b border-gray-200 px-4 py-2 flex items-center justify-between"
-    >
+    <nav class="bg-navbar">
         <div class="flex items-center">
-            <RouterLink to="/">
-                <img :src="logo" alt="Market Watch Logo" class="h-8 w-auto" />
+            <RouterLink to="/" class="flex items-center p-10">
+                <img :src="logo" alt="Market Watch Logo" class="h-15 w-auto" />
+                <span class="ml-2 font-bold text-2xl"> Market Screener </span>
             </RouterLink>
-            <ul class="ml-6 flex space-x-4">
+            <ul class="flex-1 pl-70 pr-70 flex justify-between">
                 <li>
                     <RouterLink
                         to="/"
-                        class="text-gray-700 hover:text-blue-500"
+                        class="tab-title"
+                        active-class="selected"
                     >
                         Home
                     </RouterLink>
@@ -29,7 +29,8 @@ const assetData = ref(null);
                 <li>
                     <RouterLink
                         to="/browse"
-                        class="text-gray-700 hover:text-blue-500"
+                        class="tab-title"
+                        active-class="selected"
                     >
                         Browse
                     </RouterLink>
@@ -37,7 +38,8 @@ const assetData = ref(null);
                 <li>
                     <RouterLink
                         to="/simulation-prep"
-                        class="text-gray-700 hover:text-blue-500"
+                        class="tab-title"
+                        active-class="selected"
                     >
                         Backtest Setup
                     </RouterLink>
@@ -45,7 +47,8 @@ const assetData = ref(null);
                 <li>
                     <RouterLink
                         to="/simulation"
-                        class="text-gray-700 hover:text-blue-500"
+                        class="tab-title"
+                        active-class="selected"
                     >
                         Live Simulation
                     </RouterLink>
@@ -53,7 +56,8 @@ const assetData = ref(null);
                 <li>
                     <RouterLink
                         to="/news"
-                        class="text-gray-700 hover:text-blue-500"
+                        class="tab-title"
+                        active-class="selected"
                     >
                         News
                     </RouterLink>
