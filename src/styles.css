@@ -46,3 +46,12 @@
         font-weight: bold;
     }
 }
+
+@layer components {
+    .body-background {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 1.25rem;
+        background-color: var(--background);
+    }
+}

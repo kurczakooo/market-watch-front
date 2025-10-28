@@ -6,7 +6,7 @@ import logo from '../assets/images/market_watch_logo.png';
 const route = useRoute();
 const router = useRouter();
 const isOpen = ref(false);
-const assetData = ref(null);
+const assetData = ref({ name: 'Bitcoin', ticker: 'BTC' });
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const assetData = ref(null);
                         class="tab-title"
                         active-class="selected"
                     >
-                        Home
+                        {{ assetData.ticker }}
                     </RouterLink>
                 </li>
                 <li>
