@@ -2,7 +2,7 @@
 
 /* Default CSS */
 :root {
-    font-family: 'Bahnschrift';
+    font-family: 'Inter', sans-serif;
 
     --navbar: #000000;
     --background: #16161a;
@@ -12,6 +12,7 @@
 
     --componentbackground: #404040;
     --secondarycomponentbackground: #252525;
+    --selectedcomponentbackground: #ffffff4d;
     --greenbutton: #17ac6c;
 
     --red: #b70000;
@@ -22,7 +23,7 @@
 @layer base {
     body {
         background-color: var(--background);
-        color: var(--unselectedtext);
+        color: var(--selectedtext);
     }
 }
 
@@ -53,5 +54,32 @@
         padding-right: 0.5rem;
         padding-top: 1.25rem;
         background-color: var(--background);
+    }
+
+    .news-block {
+        cursor: pointer;
+        padding: 1rem;
+        border-bottom: 1px solid var(--componentbackground);
+        --selected: var(--selectedcomponentbackground);
+    }
+
+    .news-block:hover {
+        background-color: var(--selectedcomponentbackground);
+    }
+
+    .news-list {
+        border-right: 1px solid var(--componentbackground);
+        width: 33.3333%;
+        overflow-y: auto;
+        /* -webkit-overflow-scrolling: auto; */
+        scrollbar-width: none;
+    }
+
+    .news-detail {
+        width: 66.6667%;
+        padding: 1.5rem;
+        overflow-y: auto;
+        /* -webkit-overflow-scrolling: auto; */
+        scrollbar-width: none;
     }
 }

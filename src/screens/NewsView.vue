@@ -1,38 +1,56 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import NewsBlock from '../components/NewsBlock.vue';
 
 import news from '../assets/temp_data/news.json';
 
 const newsData = ref(news);
+const selectedIndex = ref(0);
+
+function handleSelect(index: number) {
+    selectedIndex.value = index;
+}
 </script>
 
 <template>
     <div class="body-background flex">
         <!-- Left email-like news feed bar -->
-        <div class="w-1/3 border-r overflow-y-auto h-screen">
-            <div
-                v-for="article in newsData"
-                :key="article.id"
-                class="p-4 border-b hover:bg-gray-200 cursor-pointer"
-            >
-                <h2 class="text-lg font-semibold">{{ article.title }}</h2>
-                <p class="text-sm text-gray-600">{{ article.date }}</p>
-                <p class="mt-2 text-gray-800">{{ article.intro }}</p>
-            </div>
+        <div class="news-list h-screen">
+            <NewsBlock
+                v-for="(article, index) in newsData"
+                :key="index"
+                :article="article"
+                :index="index"
+                :selected="index === selectedIndex"
+                @select="handleSelect"
+            />
         </div>
         <!-- Right detailed news article view -->
-        <div class="w-2/3 overflow-y-auto h-screen">
-            <div class="p-6">
-                <h1 class="text-2xl font-bold mb-4">
-                    {{ newsData[0].title }}
-                </h1>
-                <p class="text-sm text-gray-600 mb-6">
-                    {{ newsData[0].date }}
-                </p>
-                <p class="text-gray-800">
-                    {{ newsData[0].content }}
-                </p>
-            </div>
+        <div class="news-detail">
+            <h1 class="text-2xl font-bold mb-4">
+                {{ newsData[selectedIndex]?.title }}
+            </h1>
+            <p class="text-sm text-gray-600 mb-6">
+                {{
+                    newsData[selectedIndex]?.date
+                        ? new Date(
+                              newsData[selectedIndex]?.date
+                          ).toLocaleDateString()
+                        : ''
+                }}, by
+                {{ newsData[selectedIndex]?.author }}
+            </p>
+            <p class="">
+                {{ newsData[selectedIndex]?.content }}
+            </p>
         </div>
     </div>
 </template>
+
+<!-- on the moment of entering the page (I think with useEffect) make a function that groups the news data into 4 groups based on the date attribute. The groups should be:
+today, last week, last month, last year. and the grouping should be like this:
+
+if the news is form today -> today
+if the news is from yesterday to a week ago -> last week
+if the news is older than a week but younger than a month -> last month
+if the news is older than a month -> last year -->
