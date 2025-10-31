@@ -24,6 +24,8 @@
     body {
         background-color: var(--background);
         color: var(--selectedtext);
+
+        overflow-y: hidden;
     }
 }
 
@@ -60,10 +62,13 @@
         cursor: pointer;
         padding: 1rem;
         border-bottom: 1px solid var(--componentbackground);
-        --selected: var(--selectedcomponentbackground);
     }
 
     .news-block:hover {
+        background-color: var(--selectedcomponentbackground);
+    }
+
+    .news-block--selected {
         background-color: var(--selectedcomponentbackground);
     }
 
@@ -71,15 +76,15 @@
         border-right: 1px solid var(--componentbackground);
         width: 33.3333%;
         overflow-y: auto;
-        /* -webkit-overflow-scrolling: auto; */
         scrollbar-width: none;
+        height: 100vh;
     }
 
     .news-detail {
         width: 66.6667%;
         padding: 1.5rem;
         overflow-y: auto;
-        /* -webkit-overflow-scrolling: auto; */
         scrollbar-width: none;
+        height: 100vh;
     }
 }

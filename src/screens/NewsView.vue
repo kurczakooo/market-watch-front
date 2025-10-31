@@ -15,7 +15,7 @@ function handleSelect(index: number) {
 <template>
     <div class="body-background flex">
         <!-- Left email-like news feed bar -->
-        <div class="news-list h-screen">
+        <div class="news-list">
             <NewsBlock
                 v-for="(article, index) in newsData"
                 :key="index"

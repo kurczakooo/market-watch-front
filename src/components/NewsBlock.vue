@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { NewsArticle } from '../types/news';
+import type {
+    NewsArticle,
+    NewsBlockProps,
+    NewsBlockEmits,
+} from '../types/news';
 
-const props = defineProps<{
-    article: NewsArticle;
-    index: number;
-    selected?: boolean;
-}>();
-const emit = defineEmits<(e: 'select', index: number) => void>();
+const props = defineProps<NewsBlockProps>();
+const emit = defineEmits<NewsBlockEmits>();
 
 function emitSelect() {
     emit('select', props.index);

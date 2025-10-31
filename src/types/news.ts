@@ -10,3 +10,15 @@ export interface NewsArticle {
 }
 // object representation of a list of news articles
 export type NewsList = NewsArticle[];
+
+// props for NewsBlock component
+export interface NewsBlockProps {
+    article: NewsArticle;
+    index: number;
+    selected?: boolean;
+}
+
+// emits for NewsBlock component
+export interface NewsBlockEmits {
+    (e: 'select', index: number): void;
+}
