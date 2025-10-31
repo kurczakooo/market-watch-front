@@ -14,11 +14,10 @@ export type NewsList = NewsArticle[];
 // props for NewsBlock component
 export interface NewsBlockProps {
     article: NewsArticle;
-    index: number;
     selected?: boolean;
 }
 
 // emits for NewsBlock component
 export interface NewsBlockEmits {
-    (e: 'select', index: number): void;
+    (e: 'select', articleId: number): void;
 }

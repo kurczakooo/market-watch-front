@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import type {
-    NewsArticle,
-    NewsBlockProps,
-    NewsBlockEmits,
-} from '../types/news';
+import type { NewsBlockProps, NewsBlockEmits } from '../types/news';
 
 const props = defineProps<NewsBlockProps>();
 const emit = defineEmits<NewsBlockEmits>();
 
 function emitSelect() {
-    emit('select', props.index);
+    emit('select', props.article.id);
 }
 </script>
 
 <template>
     <div
-        class="news-block cursor-pointer p-4"
+        class="news-block"
         :class="{ 'news-block--selected': props.selected }"
         @click="emitSelect"
     >

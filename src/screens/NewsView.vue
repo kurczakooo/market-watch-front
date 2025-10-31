@@ -1,14 +1,60 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import NewsBlock from '../components/NewsBlock.vue';
-
+import type { NewsArticle } from '../types/news';
 import news from '../assets/temp_data/news.json';
 
-const newsData = ref(news);
-const selectedIndex = ref(0);
+const newsData = ref<NewsArticle[]>(news);
+const selectedId = ref<number | null>(null);
+const groupedNews = computed(() => groupNewsByDate(newsData.value));
+const selectedArticle = computed(() =>
+    newsData.value.find(article => article.id === selectedId.value)
+);
 
-function handleSelect(index: number) {
-    selectedIndex.value = index;
+function handleSelect(id: number) {
+    selectedId.value = id;
+}
+
+function groupNewsByDate(newsList: NewsArticle[]) {
+    const now = new Date();
+    const oneDay = 24 * 60 * 60 * 1000;
+    const oneWeek = 7 * oneDay;
+    const oneMonth = 30 * oneDay;
+
+    const groups: Record<string, NewsArticle[]> = {
+        today: [],
+        lastWeek: [],
+        lastMonth: [],
+        lastYear: [],
+    };
+
+    // calculate the difference between now and the article date and group accordingly
+    for (const article of newsList) {
+        const diff = now.getTime() - article.date;
+
+        if (diff < oneDay) {
+            groups.today?.push(article);
+        } else if (diff < oneWeek) {
+            groups.lastWeek?.push(article);
+        } else if (diff < oneMonth) {
+            groups.lastMonth?.push(article);
+        } else {
+            groups.lastYear?.push(article);
+        }
+    }
+
+    return groups;
+}
+
+function formatLabel(label: string) {
+    return (
+        {
+            today: 'Today',
+            lastWeek: 'Last Week',
+            lastMonth: 'Last Month',
+            lastYear: 'Last Year',
+        }[label] ?? label
+    );
 }
 </script>
 
@@ -16,41 +62,35 @@ function handleSelect(index: number) {
     <div class="body-background flex">
         <!-- Left email-like news feed bar -->
         <div class="news-list">
-            <NewsBlock
-                v-for="(article, index) in newsData"
-                :key="index"
-                :article="article"
-                :index="index"
-                :selected="index === selectedIndex"
-                @select="handleSelect"
-            />
+            <template v-for="(articles, label) in groupedNews" :key="label">
+                <h2 class="unselected-text px-4 py-2 text-xl font-bold">
+                    {{ formatLabel(label) }}
+                </h2>
+                <NewsBlock
+                    v-for="article in articles"
+                    :key="article.id"
+                    :article="article"
+                    :selected="selectedId === article.id"
+                    @select="handleSelect(article.id)"
+                />
+            </template>
         </div>
         <!-- Right detailed news article view -->
-        <div class="news-detail">
+        <div class="news-detail" v-if="selectedArticle">
             <h1 class="text-2xl font-bold mb-4">
-                {{ newsData[selectedIndex]?.title }}
+                {{ selectedArticle.title }}
             </h1>
             <p class="text-sm text-gray-600 mb-6">
                 {{
-                    newsData[selectedIndex]?.date
-                        ? new Date(
-                              newsData[selectedIndex]?.date
-                          ).toLocaleDateString()
+                    selectedArticle.date
+                        ? new Date(selectedArticle.date).toLocaleDateString()
                         : ''
                 }}, by
-                {{ newsData[selectedIndex]?.author }}
+                {{ selectedArticle.author }}
             </p>
             <p class="">
-                {{ newsData[selectedIndex]?.content }}
+                {{ selectedArticle.content }}
             </p>
         </div>
     </div>
 </template>
-
-<!-- on the moment of entering the page (I think with useEffect) make a function that groups the news data into 4 groups based on the date attribute. The groups should be:
-today, last week, last month, last year. and the grouping should be like this:
-
-if the news is form today -> today
-if the news is from yesterday to a week ago -> last week
-if the news is older than a week but younger than a month -> last month
-if the news is older than a month -> last year -->
