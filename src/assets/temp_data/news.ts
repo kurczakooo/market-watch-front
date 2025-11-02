@@ -13,7 +13,7 @@ export default [
     <p>On the economic data side, the ongoing government shutdown will likely delay the monthly jobs numbers for a second straight month, making Wednesday's private payrolls figures from <strong>ADP</strong> the week's biggest labor market update.</p>
     <p>Updates on activity in the manufacturing and services sectors from the <strong>Institute for Supply Management</strong> and <strong>S&P Global</strong> will be other key highlights, along with a preliminary look at consumer sentiment in November from the <strong>University of Michigan</strong>, due out Friday.</p>
     <img src="https://s.yimg.com/ny/api/res/1.2/6gDxbqUoZRmDVoIVaz.0sg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTY0MDtjZj13ZWJw/https://s.yimg.com/os/creatr-uploaded-images/2025-10/41ba7220-b68c-11f0-89bf-6510b6267da1" 
-        alt="Federal Reserve press conference" class="w-full rounded-lg my-4" />
+        alt="Federal Reserve press conference" class="w-3/4 rounded-lg my-4 mx-auto" />
     <h1 class="text-3xl font-bold mt-6 mb-4">Far from it</h1>
     <p>A quarter-point cut was widely expected at the October Fed meeting. But the <em>real fireworks</em>, analysts say, came afterward during <strong>Fed Chair Jay Powell's</strong> press conference, where he said that another cut in December is “not a foregone conclusion, far from it.”</p>
     <blockquote class="border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4">
@@ -37,7 +37,7 @@ export default [
     <article class="prose max-w-full space-y-6">
     <p>The Netherlands‑based chipmaker Nexperia, long a major supplier of inexpensive but critical automotive semiconductors, has been thrust into a three‑way geopolitical dispute involving the U.S., China and the European Union.</p>
     <p>In late 2025 the Dutch government seized control of Nexperia over concerns that its Chinese owner Wingtech Technologies was transferring intellectual property abroad. China responded by halting exports from Nexperia’s Chinese assembly facility, raising alarms about global car‑production disruption. <em>(Source: public reporting)</em></p>
-    <img src="https://image.cnbcfm.com/api/v1/image/108220234-17619405512025-10-23t103823z_1905056082_rc2mhhav54c5_rtrmadp_0_volkswagen-production-chips.jpeg?v=1761940606&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Nexperia chip facility" class="w-full rounded-lg my-4"/>
+    <img src="https://image.cnbcfm.com/api/v1/image/108220234-17619405512025-10-23t103823z_1905056082_rc2mhhav54c5_rtrmadp_0_volkswagen-production-chips.jpeg?v=1761940606&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Nexperia chip facility" class="w-3/4 rounded-lg my-4 mx-auto"/>
     <p class="text-xs">The logo of Chinese-owned semiconductor company Nexperia is displayed at the chipmaker’s German facility, after the Dutch government seized control and auto industry bodies sounded the alarm over the possible impact on car production, in Hamburg, Germany, Oct. 23, 2025.</p>
     <h2 class="text-2xl font-bold mt-6 mb-4">Impact on automakers</h2>
     <p>While Nexperia’s chips are not the most advanced, they are used in high volumes in vehicles — for functions such as climate control, locking systems and basic sensors. Automakers warned of production delays if supplies remain constrained.</p>
@@ -71,7 +71,7 @@ export default [
         content: `
     <article class="prose max-w-full space-y-6">
     <!-- Tutaj możesz dodać własne zdjęcie -->
-    <img src="https://image.cnbcfm.com/api/v1/image/108069619-1732905541932-gettyimages-2186822529-a9i00377.jpeg?v=1735235688&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Article image" class="w-full rounded-lg my-4"/>
+    <img src="https://image.cnbcfm.com/api/v1/image/108069619-1732905541932-gettyimages-2186822529-a9i00377.jpeg?v=1735235688&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Article image" class="w-3/4 rounded-lg my-4 mx-auto"/>
     <p>LendingTree estimates the tariffs will increase holiday costs by a total of $40.6 billion. The average American holiday shopper will pay $132 more because of the tariffs implemented by President Trump, the online lending marketplace estimates.</p>
     <p>“It can have a real impact on many families. It could prompt people to cut back on gift-giving this year or lead to them taking on extra debt,” said LendingTree’s chief consumer financial analyst.</p>
     <p>American consumer wallets will be billions of dollars lighter this holiday season because of President Donald Trump’s tariffs, according to LendingTree. Sunday marked six months since Trump announced his broad “liberation day” tariffs. Prices for select food and consumer goods rose in the wake of that announcement.</p>
@@ -91,12 +91,12 @@ export default [
     },
     {
         id: 1236,
-        date: 1762103200000, // dzisiejsza data
+        date: 1762103200000,
         title: 'This startup founder works 11-hour days — but still makes time for family and fitness',
         intro: 'Desmond Lim, CEO of Workstream, shares how he balances long workdays with family time and fitness.',
         content: `
 <article class="prose max-w-full space-y-6">
-  <img src="https://image.cnbcfm.com/api/v1/image/108101112-1739340016688-Workstream_CEO.jpg?v=1739340142&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Founder image" class="w-full rounded-lg my-4"/>
+  <img src="https://image.cnbcfm.com/api/v1/image/108101112-1739340016688-Workstream_CEO.jpg?v=1739340142&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Founder image" class="w-3/4 rounded-lg my-4 mx-auto"/>
   <p>It’s often said that “there’s no such thing as balance” in entrepreneurship, but startup founder Desmond Lim disagrees. The CEO and co-founder of Workstream, a HR, payroll and hiring platform for hourly workers, says that balance isn’t just possible — it’s also necessary.</p>
   <p>Running a company can be very taxing, said Lim, who works about 11 hours a day on average. Not only are the hours long, but it can also be mentally consuming. “The emotional ups and downs are always very challenging ... The highs are very high, the lows are very low,” said Lim.</p>
   <p>“Every year, you still think the company could die. And then I just try to remind myself ... you are still alive, healthy, everything is good,” he said. “And the other thing is, you cannot stop thinking about work. I dream about it.”</p>
@@ -118,7 +118,7 @@ export default [
   <p>7:00 p.m. to 8:30 p.m.: Finish up last tasks and work</p>
   <p>8:30 p.m.: Leave office</p>
   <p>On weekends, Lim says he locks away his work phone in a cupboard and focuses on spending time with family.</p>
-  <img src="https://image.cnbcfm.com/api/v1/image/108217596-1761628442968-Desmond_1.jpg?v=1761628593&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Workout image" class="w-full rounded-lg my-4"/>
+  <img src="https://image.cnbcfm.com/api/v1/image/108217596-1761628442968-Desmond_1.jpg?v=1761628593&w=1480&h=833&ffmt=webp&vtcrop=y" alt="Workout image" class="w-3/4 rounded-lg my-4 mx-auto"/>
   <h2 class="text-2xl font-bold mt-6 mb-4">Going deep on personal passions</h2>
   <p>Along with saving weekends for family time, Lim also prioritizes his passion for sports and exercise by building it into his daily schedule. “One advice [I have] for founders and leaders is ... to go very deep on one passion you have that is not work [related],” said Lim. “For me, that has been sports ... I do a lot of basketball, swimming, and gym. I think having a balance other than work has been very helpful for me.”</p>
   <p>Lim developed his love for basketball when he was seven. He went on to captain his school teams from middle school to university, and even played professionally for the Singapore National Youth Team.</p>

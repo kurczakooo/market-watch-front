@@ -62,12 +62,11 @@
         background-color: var(--background);
     }
 
+    /* NEWS SCREEN */
+
     .news-block {
         cursor: pointer;
-        padding-bottom: 1rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-top: 0.5rem;
+        padding: 0.5rem 1rem 1rem 1rem;
         border-bottom: 1px solid var(--componentbackground);
     }
 
@@ -93,5 +92,35 @@
         overflow-y: auto;
         scrollbar-width: none;
         height: 100vh;
+    }
+
+    /* BROWSE SCREEN */
+
+    .search-bar-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 0;
+        width: 100%;
+        position: relative;
+    }
+
+    .search-bar {
+        width: 75%;
+        padding: 1rem 1rem 1rem 3rem;
+        border-radius: 2.5rem;
+        background-color: var(--componentbackground);
+        color: var(--selectedtext);
+        border: none;
+        outline: none;
+    }
+
+    .search-bar-icon {
+        position: absolute;
+        left: calc(12.5% + 1rem);
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--unselectedtext);
+        font-size: 1.5rem;
+        pointer-events: none;
     }
 }
