@@ -21,3 +21,8 @@ export interface NewsBlockProps {
 export interface NewsBlockEmits {
     (e: 'select', articleId: number): void;
 }
+
+// props for NewsArticle component
+export interface NewsDisplayProps {
+    article: NewsArticle;
+}

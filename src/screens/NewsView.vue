@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import NewsBlock from '../components/NewsBlock.vue';
+import NewsDisplay from '../components/NewsDisplay.vue';
 import type { NewsArticle } from '../types/news';
-import news from '../assets/temp_data/news.json';
+import news from '../assets/temp_data/news.ts';
 
 const newsData = ref<NewsArticle[]>(news);
 const selectedId = ref<number | null>(null);
@@ -76,21 +77,6 @@ function formatLabel(label: string) {
             </template>
         </div>
         <!-- Right detailed news article view -->
-        <div class="news-detail" v-if="selectedArticle">
-            <h1 class="text-2xl font-bold mb-4">
-                {{ selectedArticle.title }}
-            </h1>
-            <p class="text-sm text-gray-600 mb-6">
-                {{
-                    selectedArticle.date
-                        ? new Date(selectedArticle.date).toLocaleDateString()
-                        : ''
-                }}, by
-                {{ selectedArticle.author }}
-            </p>
-            <p class="">
-                {{ selectedArticle.content }}
-            </p>
-        </div>
+        <NewsDisplay v-if="selectedArticle" :article="selectedArticle" />
     </div>
 </template>
