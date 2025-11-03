@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import NewsBlock from '../components/NewsBlock.vue';
 import NewsDisplay from '../components/NewsDisplay.vue';
 import type { NewsArticle } from '../types/news';
-import news from '../assets/temp_data/news.ts';
+import news from '../assets/utils/news.ts';
 
 const newsData = ref<NewsArticle[]>(news);
 const selectedId = ref<number | null>(null);

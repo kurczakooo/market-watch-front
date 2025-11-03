@@ -14,7 +14,7 @@ export type NewsList = NewsArticle[];
 // props for NewsBlock component
 export interface NewsBlockProps {
     article: NewsArticle;
-    selected?: boolean;
+    selected: boolean;
 }
 
 // emits for NewsBlock component
