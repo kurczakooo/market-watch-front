@@ -11,3 +11,11 @@ export interface AssetSearchListProps {
     listTitle: string;
     assetsData: AssetListElementProps[];
 }
+
+// object representation of an asset data from backend
+export interface AssetData {
+    stock: AssetListElementProps[];
+    etfs: AssetListElementProps[];
+    commodities: AssetListElementProps[];
+    crypto: AssetListElementProps[];
+}
