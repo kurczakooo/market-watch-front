@@ -60,7 +60,7 @@ function formatLabel(label: string) {
 </script>
 
 <template>
-    <div class="body-background flex">
+    <div class="body-background flex h-screen">
         <!-- Left email-like news feed bar -->
         <div class="news-list">
             <template v-for="(articles, label) in groupedNews" :key="label">

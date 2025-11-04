@@ -7,21 +7,19 @@ const props = defineProps<AssetSearchListProps>();
 
 <template>
     <div class="flex flex-1 flex-col">
-        <h1 class="unselected-text text-xl font-bold">
+        <h1 class="unselected-text text-2xl font-bold py-3">
             {{ props.listTitle }}
         </h1>
-        <div class="search-asset-list min-h-0 rounded-2xl overflow-hidden">
-            <div class="px-4 pb-4 overflow-y-auto flex-1">
-                <!-- generate a list of asset elements -->
-                <AssetListElement
-                    v-for="asset in props.assetsData"
-                    :key="asset.ticker"
-                    :name="asset.name"
-                    :ticker="asset.ticker"
-                    :currentPrice="asset.currentPrice"
-                    :logoUrl="asset.logoUrl"
-                />
-            </div>
+        <div class="search-asset-list">
+            <!-- generate a list of asset elements -->
+            <AssetListElement
+                v-for="asset in props.assetsData"
+                :key="asset.ticker"
+                :name="asset.name"
+                :ticker="asset.ticker"
+                :currentPrice="asset.currentPrice"
+                :logoUrl="asset.logoUrl"
+            />
         </div>
     </div>
 </template>

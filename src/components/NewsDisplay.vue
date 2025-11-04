@@ -6,7 +6,7 @@ const props = defineProps<NewsDisplayProps>();
 
 <template>
     <div class="news-detail">
-        <h1 class="text-2xl font-bold mb-4">
+        <h1 class="text-3xl font-bold mb-4">
             {{ props.article.title }}
         </h1>
         <p class="text-sm text-gray-600 mb-6">
@@ -17,6 +17,6 @@ const props = defineProps<NewsDisplayProps>();
             }}, by
             {{ props.article.author }}
         </p>
-        <div v-html="props.article.content"></div>
+        <div class="flex-1" v-html="props.article.content"></div>
     </div>
 </template>

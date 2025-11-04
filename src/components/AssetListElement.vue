@@ -5,16 +5,18 @@ const props = defineProps<AssetListElementProps>();
 </script>
 
 <template>
-    <div class="flex">
+    <div class="search-asset-list-element">
         <img
             :src="props.logoUrl"
             alt="asset logo"
-            class="w-10 h-10 rounded-full mr-4"
+            class="w-12 h-12 rounded-full mr-3"
         />
         <div class="flex flex-col">
-            <span class="font-semibold text-lg">{{ props.name }}</span>
-            <span class="text-gray-400">{{ props.ticker }}</span>
+            <span class="font-bold text-lg">{{ props.name }}</span>
+            <span class="font-semibold unselected-text">{{
+                props.ticker
+            }}</span>
         </div>
-        <p class="ml-auto font-medium text-lg">${{ props.currentPrice }}</p>
+        <p class="ml-auto font-bold text-xl">${{ props.currentPrice }}</p>
     </div>
 </template>
