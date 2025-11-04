@@ -5,10 +5,10 @@ const props = defineProps<AssetListElementProps>();
 </script>
 
 <template>
-    <div>
+    <div class="flex">
         <img
             :src="props.logoUrl"
-            alt="Asset Image"
+            alt="asset logo"
             class="w-10 h-10 rounded-full mr-4"
         />
         <div class="flex flex-col">
