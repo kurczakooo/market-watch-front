@@ -6,6 +6,11 @@ export interface AssetListElementProps {
     logoUrl: string;
 }
 
+// emits for asset list element component
+export interface AssetListElementEmits {
+    (e: 'select', asset: AssetListElementProps): void;
+}
+
 // props for asset search list component
 export interface AssetSearchListProps {
     listTitle: string;

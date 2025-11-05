@@ -7,7 +7,6 @@ import mockAssetData from '../assets/utils/browse';
 import type { AssetData, AssetListElementProps } from '../types/browse';
 
 const assetData = ref<AssetData>(mockAssetData);
-
 // reactive query
 const searchQuery = ref('');
 
@@ -34,30 +33,6 @@ const filteredAssets = computed<AssetData>(() => {
 function onSearch(query: string) {
     searchQuery.value = query;
 }
-
-// const allAssets: AssetListElementProps[] = [
-//     ...assetData.value.stocks,
-//     ...assetData.value.etfs,
-//     ...assetData.value.commodities,
-//     ...assetData.value.crypto,
-// ];
-
-// const searcher = new FuzzySearch(allAssets, ['name', 'ticker'], {
-//     caseSensitive: false,
-// });
-
-// function onSearch(query: string) {
-//     console.log('Search query:', query);
-
-//     if (!query) {
-//         return allAssets;
-//     }
-
-//     const results = searcher.search(query);
-//     console.log('Search results:', results);
-
-//     return results;
-// }
 </script>
 
 <template>
@@ -66,7 +41,7 @@ function onSearch(query: string) {
         <SearchBar @update="onSearch" />
 
         <!-- Result Columns (below search bar) -->
-        <div class="w-full mt-2 flex-1 flex gap-3 overflow-hidden">
+        <div class="search-asset-list-container">
             <AssetSearchList
                 listTitle="Stocks"
                 :assetsData="filteredAssets.stocks"

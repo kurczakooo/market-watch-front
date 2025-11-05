@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import type { AssetListElementProps } from '../types/browse';
+import type {
+    AssetListElementProps,
+    AssetListElementEmits,
+} from '../types/browse';
 
 const props = defineProps<AssetListElementProps>();
+
+const emit = defineEmits<AssetListElementEmits>();
+
+function emitSelect() {
+    emit('select', props);
+}
 </script>
 
 <template>
-    <div class="search-asset-list-element">
+    <div class="search-asset-list-element" @click="emitSelect">
         <img
             :src="props.logoUrl"
             alt="asset logo"
