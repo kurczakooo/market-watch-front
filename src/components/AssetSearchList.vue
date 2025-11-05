@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import type { AssetSearchListProps } from '../types/browse';
+import type {
+    AssetSearchListProps,
+    AssetListElementProps,
+} from '../types/browse';
 import AssetListElement from './AssetListElement.vue';
+import { useCurrentAssetStore } from '../stores/currentAsset';
+
+const currentAssetStore = useCurrentAssetStore();
 
 const props = defineProps<AssetSearchListProps>();
+
+function onSelectAsset(asset: AssetListElementProps) {
+    currentAssetStore.setCurrentAsset(asset);
+}
 </script>
 
 <template>
@@ -19,6 +29,7 @@ const props = defineProps<AssetSearchListProps>();
                 :ticker="asset.ticker"
                 :currentPrice="asset.currentPrice"
                 :logoUrl="asset.logoUrl"
+                @select="onSelectAsset(asset)"
             />
         </div>
     </div>

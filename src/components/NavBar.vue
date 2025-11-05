@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+// import { ref, onMounted, onUnmounted } from 'vue';
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import logo from '../assets/images/market_watch_logo.png';
+import { useCurrentAssetStore } from '../stores/currentAsset';
 
-const route = useRoute();
-const router = useRouter();
-const isOpen = ref(false);
-const assetData = ref({ name: 'Bitcoin', ticker: 'BTC' });
+const currentAssetStore = useCurrentAssetStore();
+
+// const route = useRoute();
+// const router = useRouter();
+// const isOpen = ref(false);
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const assetData = ref({ name: 'Bitcoin', ticker: 'BTC' });
                         class="tab-title"
                         active-class="selected"
                     >
-                        {{ assetData.ticker }}
+                        {{ currentAssetStore.$state.assetData.ticker }}
                     </RouterLink>
                 </li>
                 <li>
