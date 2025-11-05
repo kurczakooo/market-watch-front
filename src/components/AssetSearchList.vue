@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import type {
     AssetSearchListProps,
     AssetListElementProps,
@@ -7,11 +8,15 @@ import AssetListElement from './AssetListElement.vue';
 import { useCurrentAssetStore } from '../stores/currentAsset';
 
 const currentAssetStore = useCurrentAssetStore();
+const router = useRouter();
 
 const props = defineProps<AssetSearchListProps>();
 
 function onSelectAsset(asset: AssetListElementProps) {
+    // set current asset to the selected one
     currentAssetStore.setCurrentAsset(asset);
+    // route user to home page
+    router.push('/');
 }
 </script>
 

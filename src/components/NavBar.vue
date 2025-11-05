@@ -1,14 +1,9 @@
 <script setup lang="ts">
-// import { ref, onMounted, onUnmounted } from 'vue';
-import { RouterLink, useRoute, useRouter } from 'vue-router';
+import { RouterLink } from 'vue-router';
 import logo from '../assets/images/market_watch_logo.png';
 import { useCurrentAssetStore } from '../stores/currentAsset';
 
 const currentAssetStore = useCurrentAssetStore();
-
-// const route = useRoute();
-// const router = useRouter();
-// const isOpen = ref(false);
 </script>
 
 <template>
