@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { CurrentAssetData } from '../types/currentAsset';
+// import type { CurrentAssetData } from '../types/currentAsset';
 import type { AssetListElementProps } from '../types/browse';
 
 export const useCurrentAssetStore = defineStore('currentAssetStore', {
@@ -14,6 +14,12 @@ export const useCurrentAssetStore = defineStore('currentAssetStore', {
             // set to assetData
 
             this.assetData = data;
+        },
+
+        setCurrentAssetNewPrice(price: number) {
+            if (this.assetData) {
+                this.assetData.currentPrice = price;
+            }
         },
     },
     getters: {

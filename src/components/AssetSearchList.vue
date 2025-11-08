@@ -21,8 +21,8 @@ function onSelectAsset(asset: AssetListElementProps) {
 </script>
 
 <template>
-    <div class="flex flex-1 flex-col">
-        <h1 class="unselected-text text-2xl font-bold py-3">
+    <div class="body-background flex-col">
+        <h1 class="unselected-text text-2xl font-bold">
             {{ props.listTitle }}
         </h1>
         <div class="search-asset-list">
