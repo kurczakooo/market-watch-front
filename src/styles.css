@@ -32,12 +32,23 @@
         color: var(--unselectedtext);
     }
 
+    .layer-background-color {
+        background-color: var(--secondarycomponentbackground);
+    }
+
     .red-icon {
         color: var(--red);
     }
 
     .green-icon {
         color: var(--green);
+    }
+
+    .component-name {
+        color: var(--unselectedtext);
+        font-size: var(--text-2xl);
+        line-height: var(--tw-leading, var(--text-2xl--line-height));
+        font-weight: bold;
     }
 }
 
@@ -162,5 +173,33 @@
 
     .search-asset-list-element:hover {
         background-color: var(--selectedcomponentbackground);
+    }
+
+    /* SIMULATION SETUP SCREEN */
+
+    .sim-param-input-container {
+        width: fit-content;
+        padding: 1rem 0;
+        /* background-color: #15aa6a; */
+        position: relative;
+    }
+
+    .sim-param-input {
+        padding: 1rem 1rem 1rem 3rem;
+        border-radius: 2.5rem;
+        background-color: var(--componentbackground);
+        color: var(--selectedtext);
+        border: none;
+        outline: none;
+    }
+
+    .sim-param-input-icon {
+        position: absolute;
+        margin-left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--unselectedtext);
+        font-size: 1.5rem;
+        pointer-events: none;
     }
 }

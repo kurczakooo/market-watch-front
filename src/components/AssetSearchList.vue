@@ -22,7 +22,7 @@ function onSelectAsset(asset: AssetListElementProps) {
 
 <template>
     <div class="body-background flex-col">
-        <h1 class="unselected-text text-2xl font-bold">
+        <h1 class="component-name">
             {{ props.listTitle }}
         </h1>
         <div class="search-asset-list">
