@@ -55,11 +55,11 @@ watch(
             {{ currentAssetStore.assetData.ticker }}
         </h3>
         <div
-            :class="percentagePriceChange > 0 ? 'green-icon' : 'red-icon'"
+            :class="percentagePriceChange! > 0 ? 'green-icon' : 'red-icon'"
             class="flex flex-1 mr-2 mt-5"
         >
             <span class="text-xl ml-auto">
-                {{ percentagePriceChange > 0 ? '▲' : '▼' }}
+                {{ percentagePriceChange! > 0 ? '▲' : '▼' }}
             </span>
             <h3 class="text-lg font-semibold">
                 {{ percentagePriceChange?.toFixed(2) }}%

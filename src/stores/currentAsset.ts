@@ -1,12 +1,23 @@
 import { defineStore } from 'pinia';
 // import type { CurrentAssetData } from '../types/currentAsset';
 import type { AssetListElementProps } from '../types/browse';
+import assetList from '../assets/utils/browse';
 
 export const useCurrentAssetStore = defineStore('currentAssetStore', {
     state: () => ({
+        initialized: false,
         assetData: {} as AssetListElementProps,
     }),
     actions: {
+        initOnce() {
+            // in the future, use a service here to send an initial request to btain some starting data of an asset
+            if (this.initialized) return;
+
+            this.setCurrentAsset(assetList['crypto'][0]!);
+
+            this.initialized = true;
+        },
+
         setCurrentAsset(data: AssetListElementProps) {
             // right now only get basic details no data, for displaying names etc,
             // later set a default parameters for data request, and send a request
