@@ -4,10 +4,23 @@ import type { AssetListElementProps } from '../types/browse';
 import assetList from '../assets/utils/browse';
 
 export const useCurrentAssetStore = defineStore('currentAssetStore', {
-    state: () => ({
+    state: (): {
+        initialized: boolean;
+        assetData: AssetListElementProps;
+    } => ({
         initialized: false,
         assetData: {} as AssetListElementProps,
     }),
+
+    getters: {
+        getBriefInfo(state) {
+            // later return assetData.brief
+            return state.assetData;
+        },
+
+        getCurrentPrice: state => state.assetData.currentPrice,
+    },
+
     actions: {
         initOnce() {
             // in the future, use a service here to send an initial request to btain some starting data of an asset
@@ -32,12 +45,5 @@ export const useCurrentAssetStore = defineStore('currentAssetStore', {
                 this.assetData.currentPrice = price;
             }
         },
-    },
-    getters: {
-        getBriefInfo(state) {
-            // later return assetData.brief
-            return this.assetData;
-        },
-        // getData(state){}
     },
 });

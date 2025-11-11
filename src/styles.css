@@ -44,6 +44,18 @@
         color: var(--green);
     }
 
+    .golden-color {
+        background-color: var(--gold);
+    }
+
+    .green-color {
+        background-color: var(--green);
+    }
+
+    .component-background-color {
+        background-color: var(--componentbackground);
+    }
+
     .component-name {
         color: var(--unselectedtext);
         font-size: var(--text-2xl);
@@ -180,7 +192,6 @@
     .sim-param-input-container {
         width: fit-content;
         padding: 1rem 0;
-        /* background-color: #15aa6a; */
         position: relative;
     }
 
@@ -201,5 +212,19 @@
         color: var(--unselectedtext);
         font-size: 1.5rem;
         pointer-events: none;
+    }
+
+    .sim-control-panel-button {
+        padding: 1rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        font-size: var(--text-2xl);
+        line-height: var(--tw-leading, var(--text-2xl--line-height));
+        cursor: pointer;
+    }
+
+    .sim-control-disabled {
+        background-color: var(--background);
+        color: var(--unselectedtext);
     }
 }

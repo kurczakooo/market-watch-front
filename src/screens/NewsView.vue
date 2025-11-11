@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import NewsBlock from '../components/NewsBlock.vue';
 import NewsDisplay from '../components/NewsDisplay.vue';
 import type { NewsArticle } from '../types/news';
-import news from '../assets/utils/news.ts';
+import news from '../assets/utils/news';
 
 const newsData = ref<NewsArticle[]>(news);
 const selectedId = ref<number | null>(null);
@@ -60,7 +60,7 @@ function formatLabel(label: string) {
 </script>
 
 <template>
-    <div class="body-background h-screen">
+    <div class="body-background flex">
         <!-- Left email-like news feed bar -->
         <div class="news-list">
             <template v-for="(articles, label) in groupedNews" :key="label">

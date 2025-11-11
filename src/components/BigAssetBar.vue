@@ -15,10 +15,13 @@ let intervalId: ReturnType<typeof setInterval> | null = null;
 
 onMounted(() => {
     intervalId = setInterval(() => {
-        const newPrice = getRandomPrice(100000, 110000);
+        const currentPrice = currentAssetStore.getCurrentPrice;
+        const min = currentPrice - currentPrice / 10; // 10% below
+        const max = currentPrice + currentPrice / 10; // 10% above
+
+        const newPrice = getRandomPrice(min, max);
         currentAssetStore.setCurrentAssetNewPrice(newPrice);
     }, 3000);
-    // console.log(currentAssetStore.assetData.currentPrice);
 });
 
 onBeforeUnmount(() => {

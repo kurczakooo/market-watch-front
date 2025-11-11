@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import BigAssetBar from '../components/BigAssetBar.vue';
-
 import StartingParamsSection from '../components/StartingParamsSection.vue';
+import SimulationControlPanel from '../components/SimulationControlPanel.vue';
+import { useCurrentAssetStore } from '../stores/currentAsset';
+
+const currentAssetStore = useCurrentAssetStore();
 </script>
 
 <template>
     <div class="body-background flex-col">
         <BigAssetBar />
         <div class="flex py-8">
+            <!-- simulation starting parameters -->
             <StartingParamsSection />
-            <div class="w-1/3 rounded-3xl layer-background-color"></div>
+
+            <!-- simulation controls -->
+            <SimulationControlPanel />
         </div>
     </div>
 </template>

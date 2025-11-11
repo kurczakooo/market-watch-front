@@ -5,3 +5,11 @@ export interface SimParamInputProps {
     placeholder: string;
     hintText: string;
 }
+
+// values accepted as simulation state
+export type SimStatusType =
+    | 'not ready'
+    | 'ready'
+    | 'ongoing'
+    | 'finished'
+    | 'cancelled';
