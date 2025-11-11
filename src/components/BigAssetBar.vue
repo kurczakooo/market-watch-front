@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import type { AssetListElementProps } from '../types/browse';
 import { onMounted, onBeforeUnmount } from 'vue';
-// import type { CurrentAssetData } from '../types/currentAsset';
 import { useCurrentAssetStore } from '../stores/currentAsset';
+import CurrentAssetNameBox from './CurrentAssetNameBox.vue';
 
 const currentAssetStore = useCurrentAssetStore();
 //////////////////////// TEMP CODE FOR DEVELOPMENT PURPOSES //////////////////////////////////
@@ -45,18 +44,8 @@ watch(
 </script>
 
 <template>
-    <div class="flex flex-1 mt-4 items-center">
-        <img
-            :src="currentAssetStore.assetData.logoUrl"
-            alt="Asset logo"
-            class="w-16 h-16 rounded-full mr-2"
-        />
-        <h1 class="text-5xl font-semibold">
-            {{ currentAssetStore.assetData.name }}
-        </h1>
-        <h3 class="unselected-text mt-5 ml-3 text-xl font-semibold">
-            {{ currentAssetStore.assetData.ticker }}
-        </h3>
+    <div class="flex mt-4 items-center">
+        <CurrentAssetNameBox />
         <div
             :class="percentagePriceChange! > 0 ? 'green-icon' : 'red-icon'"
             class="flex flex-1 mr-2 mt-5"

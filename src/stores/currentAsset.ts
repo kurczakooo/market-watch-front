@@ -19,6 +19,7 @@ export const useCurrentAssetStore = defineStore('currentAssetStore', {
         },
 
         getCurrentPrice: state => state.assetData.currentPrice,
+        getCurrentTicker: state => state.assetData.ticker,
     },
 
     actions: {

@@ -8,7 +8,7 @@ const currentAssetStore = useCurrentAssetStore();
 </script>
 
 <template>
-    <div class="body-background flex-col">
+    <div class="body-background">
         <BigAssetBar />
         <div class="flex py-8">
             <!-- simulation starting parameters -->

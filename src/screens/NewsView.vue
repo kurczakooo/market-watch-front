@@ -14,6 +14,7 @@ const selectedArticle = computed(() =>
 
 function handleSelect(id: number) {
     selectedId.value = id;
+    console.log(selectedId.value);
 }
 
 function groupNewsByDate(newsList: NewsArticle[]) {
@@ -60,7 +61,7 @@ function formatLabel(label: string) {
 </script>
 
 <template>
-    <div class="body-background flex">
+    <div class="body-background">
         <!-- Left email-like news feed bar -->
         <div class="news-list">
             <template v-for="(articles, label) in groupedNews" :key="label">

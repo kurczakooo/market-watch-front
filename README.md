@@ -18,4 +18,4 @@
 ##### Simulation prep screen
 
 -   [] create validations for all parameter inputs
--   [] aggreagate all the input information for easy-iteration-like validation and processing, also remember to change the state of the simulation
+-   [] aggreagate all the input information for easy-iteration-like validation and processing, also remember to change the state of the simulation (and make the reset parameters button work)
