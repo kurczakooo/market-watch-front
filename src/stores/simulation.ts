@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
 import type { SimStatusType } from '../types/simulationPrep';
+import type { SimLog } from '../types/simulation';
+import { exampleLogs } from '../assets/utils/simulation';
 
 export const useSimulationStore = defineStore('simulationStore', {
     state: (): {
@@ -13,14 +15,15 @@ export const useSimulationStore = defineStore('simulationStore', {
         simulationDeposit: number;
         simulationAssetHoldings: number;
         simulationPortfolioValue: number;
-        // simulationLogs: JSON;
+        simulationLogs: SimLog[];
     } => ({
-        simulationState: 'ready',
+        simulationState: 'ongoing',
         simulationProgress: 0,
         simulationDuration: 0,
         simulationDeposit: 124231,
         simulationAssetHoldings: 43245,
         simulationPortfolioValue: 167476,
+        simulationLogs: exampleLogs,
     }),
 
     getters: {
@@ -30,6 +33,7 @@ export const useSimulationStore = defineStore('simulationStore', {
         getSimulationDeposit: state => state.simulationDeposit,
         getSimulationAssetHoldings: state => state.simulationAssetHoldings,
         getSimulationPortfolioValue: state => state.simulationPortfolioValue,
+        getSimulationLogs: state => state.simulationLogs,
 
         getSimulationDepositFormatted(state) {
             return formatMoneyNumbers(state.simulationDeposit);
@@ -62,10 +66,13 @@ export const useSimulationStore = defineStore('simulationStore', {
             this.simulationPortfolioValue =
                 this.getSimulationDeposit + this.getSimulationAssetHoldings;
         },
+        addSimLog(newLog: SimLog) {
+            this.simulationLogs.push(newLog);
+        },
     },
 });
 
-function formatMoneyNumbers(value: number): string {
+export function formatMoneyNumbers(value: number): string {
     return `$${value.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
