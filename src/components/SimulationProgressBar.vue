@@ -29,7 +29,7 @@ const formattedDuration = computed(() => {
         :value="simulationStore.getSimulationProgress"
         :show-value="false"
         :pt="{ value: { class: 'golden-color h-4 rounded-full' } }"
-        class="component-background-color h-4 rounded-full"
+        class="sim-progress-bar"
     />
     <div class="flex-1 flex justify-between">
         <p class="font-semibold">

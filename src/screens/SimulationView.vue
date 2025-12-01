@@ -12,9 +12,10 @@ const currentAssetStore = useCurrentAssetStore();
 
 const getFormattedLog = (log: SimLog): FormattedLog => {
     var formattedLog: FormattedLog = {
+        positionId: log.positionId.toString(),
         date: new Date(log.date).toLocaleDateString('en-GB'),
         action: log.action,
-        amount: `${log.amount}${currentAssetStore.getCurrentTicker}`,
+        amount: `${log.amount}   ${currentAssetStore.getCurrentTicker}`,
         value: `${formatMoneyNumbers(log.value)}`,
     };
 
@@ -54,7 +55,7 @@ const formattedLogs = computed(() =>
         <!-- simulation chart -->
         <div class="common-sim-div">
             <!-- fixed div to represent the chart in the future -->
-            <div class="w-343 h-150 bg-black rounded-3xl m-2"></div>
+            <div class="w-full bg-black rounded-3xl m-2"></div>
         </div>
 
         <div class="flex">
@@ -92,6 +93,9 @@ const formattedLogs = computed(() =>
                             : 'text-(--green)'
                     "
                 >
+                    <span class="log text-(--unselectedtext)">{{
+                        log.positionId
+                    }}</span>
                     <span class="log">{{ log.date.toLocaleString() }}</span>
                     <span class="log uppercase">{{ log.action }}</span>
                     <span class="log">{{ log.amount }}</span>

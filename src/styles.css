@@ -18,6 +18,18 @@
     --red: #b70000;
     --green: #15aa6a;
     --gold: #fdd90f;
+
+    --shadow-small: inset 0 1px 2px var(--unselectedtext) /* top shadow */,
+        0 1px 2px var(--background),
+        /* dark shadow */ 0 2px 4px var(--secondarycomponentbackground); /* soft shadow */
+
+    --shadow-medium: inset 0 1px 2px var(--unselectedtext) /* top shadow */,
+        0 2px 4px var(--background),
+        /* dark shadow */ 0 4px 7px var(--secondarycomponentbackground); /* soft shadow */
+
+    --shadow-large: inset 0 1px 2px var(--unselectedtext) /* top shadow */,
+        0 4px 6px var(--background),
+        /* dark shadow */ 0 6px 10px var(--secondarycomponentbackground); /* soft shadow */
 }
 
 @layer base {
@@ -30,10 +42,6 @@
 
     .unselected-text {
         color: var(--unselectedtext);
-    }
-
-    .layer-background-color {
-        background-color: var(--secondarycomponentbackground);
     }
 
     .red-icon {
@@ -50,10 +58,6 @@
 
     .green-color {
         background-color: var(--green);
-    }
-
-    .component-background-color {
-        background-color: var(--componentbackground);
     }
 
     .component-name {
@@ -87,15 +91,30 @@
 
 @layer components {
     .body-background {
-        max-width: 1920px;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        padding-top: 1.25rem;
         display: flex;
         flex: 1;
         flex-direction: column;
+
+        max-width: 1920px;
+        margin: 0 auto;
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 1.25rem;
+
         min-height: calc(100vh - 13vh); /* minus navbar height */
         background-color: var(--background);
+    }
+
+    /* HOME SCREEN */
+
+    .additional-sim-wallet {
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--unselectedtext);
+    }
+
+    .add-top-pad {
+        padding-top: 2.5rem;
     }
 
     /* NEWS SCREEN */
@@ -149,6 +168,8 @@
         color: var(--selectedtext);
         border: none;
         outline: none;
+
+        box-shadow: var(--shadow-small);
     }
 
     .search-bar-icon {
@@ -163,8 +184,8 @@
 
     .search-asset-list-container {
         display: flex;
-        width: 100%;
         overflow: hidden;
+        height: calc(100vh - 13vh); /* minus navbar height */
     }
 
     .search-asset-list {
@@ -177,6 +198,8 @@
         overflow-y: auto;
         scrollbar-width: none;
         padding-bottom: 5rem;
+
+        box-shadow: var(--shadow-large);
     }
 
     .search-asset-list-element {
@@ -205,6 +228,8 @@
         color: var(--selectedtext);
         border: none;
         outline: none;
+
+        box-shadow: var(--shadow-medium);
     }
 
     .sim-param-input-icon {
@@ -217,6 +242,16 @@
         pointer-events: none;
     }
 
+    .sim-control-panel {
+        flex-direction: column;
+        display: flex;
+        border-radius: var(--radius-3xl) /* 1.5rem = 24px */;
+        padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+        background-color: var(--secondarycomponentbackground);
+
+        box-shadow: var(--shadow-large);
+    }
+
     .sim-control-panel-button {
         padding: 1rem;
         border-radius: 1rem;
@@ -224,11 +259,23 @@
         font-size: var(--text-2xl);
         line-height: var(--tw-leading, var(--text-2xl--line-height));
         cursor: pointer;
+
+        box-shadow: var(--shadow-medium);
     }
 
     .sim-control-disabled {
         background-color: var(--background);
         color: var(--unselectedtext);
+
+        box-shadow: var(--shadow-small);
+    }
+
+    .sim-progress-bar {
+        height: calc(var(--spacing) * 4) /* 1rem = 16px */;
+        border-radius: calc(infinity * 1px);
+        background-color: var(--componentbackground);
+
+        box-shadow: var(--shadow-small);
     }
 
     /* SIMULATION SCREEN */
@@ -240,7 +287,8 @@
     }
 
     .log {
-        width: 25%;
-        font-weight: 600;
+        width: 20%;
+        font-weight: 500;
+        font-size: large;
     }
 }

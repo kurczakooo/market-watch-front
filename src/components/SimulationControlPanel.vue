@@ -38,7 +38,7 @@ const onSimulationStart = () => {
 
 <template>
     <!-- Simulation Controls -->
-    <div class="w-1/3 flex-col flex rounded-3xl layer-background-color p-5">
+    <div class="w-1/3 sim-control-panel">
         <!-- Progress Bar -->
         <SimulationProgressBar />
         <!-- control buttons -->
