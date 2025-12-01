@@ -32,12 +32,11 @@ const lastPrice = ref<number | null>();
 const percentagePriceChange = ref<number | null>();
 
 watch(
-    () => currentAssetStore.assetData.currentPrice,
+    () => currentAssetStore.getCurrentPrice,
     (newPrice, oldPrice) => {
         if (oldPrice !== undefined && oldPrice !== null) {
             lastPrice.value = oldPrice;
-            percentagePriceChange.value =
-                ((newPrice - oldPrice) / oldPrice) * 100;
+            percentagePriceChange.value = ((newPrice - oldPrice) / oldPrice) * 100;
         }
     }
 );
@@ -46,19 +45,14 @@ watch(
 <template>
     <div class="flex mt-4 items-center">
         <CurrentAssetNameBox />
-        <div
-            :class="percentagePriceChange! > 0 ? 'green-icon' : 'red-icon'"
-            class="flex flex-1 mr-2 mt-5"
-        >
+        <div :class="percentagePriceChange! > 0 ? 'green-icon' : 'red-icon'" class="flex flex-1 mr-2 mt-5">
             <span class="text-xl ml-auto">
                 {{ percentagePriceChange! > 0 ? '▲' : '▼' }}
             </span>
-            <h3 class="text-lg font-semibold">
-                {{ percentagePriceChange?.toFixed(2) }}%
-            </h3>
+            <h3 class="text-lg font-semibold">{{ percentagePriceChange?.toFixed(2) }}%</h3>
         </div>
         <h1 class="ml-auto text-5xl font-bold">
-            ${{ currentAssetStore.assetData.currentPrice }}
+            {{ currentAssetStore.getCurrentPriceFormatted }}
         </h1>
     </div>
 </template>

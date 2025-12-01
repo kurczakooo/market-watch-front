@@ -1,5 +1,6 @@
 // type representing a sim log object
 export interface SimLog {
+    positionId: string;
     date: number;
     action: 'buy' | 'sell';
     amount: number;
@@ -7,6 +8,7 @@ export interface SimLog {
 }
 
 export interface FormattedLog {
+    positionId: string;
     date: string;
     action: 'buy' | 'sell';
     amount: string;

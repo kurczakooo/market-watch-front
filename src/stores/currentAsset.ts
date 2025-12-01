@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 // import type { CurrentAssetData } from '../types/currentAsset';
 import type { AssetListElementProps } from '../types/browse';
 import assetList from '../assets/utils/browse';
+import { formatMoneyNumbers } from '../stores/simulation';
 
 export const useCurrentAssetStore = defineStore('currentAssetStore', {
     state: (): {
@@ -18,7 +19,11 @@ export const useCurrentAssetStore = defineStore('currentAssetStore', {
             return state.assetData;
         },
 
+        getCurrentPriceFormatted: state =>
+            formatMoneyNumbers(state.assetData.currentPrice),
+
         getCurrentPrice: state => state.assetData.currentPrice,
+
         getCurrentTicker: state => state.assetData.ticker,
     },
 
