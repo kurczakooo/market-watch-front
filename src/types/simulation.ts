@@ -1,8 +1,7 @@
 // type representing a sim log object
 export interface SimLog {
-    positionId: string;
-    date: number;
-    action: 'buy' | 'sell';
+    id: number;
+    type: 'buy' | 'sell';
     amount: number;
     value: number;
 }
@@ -13,4 +12,10 @@ export interface FormattedLog {
     action: 'buy' | 'sell';
     amount: string;
     value: string;
+}
+
+export interface SimResultsData {
+    asset: string;
+    price: Map<number, number>;
+    operations: Map<number, SimLog[]>;
 }

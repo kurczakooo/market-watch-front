@@ -1,53 +1,104 @@
 import type { SimLog } from '../../types/simulation';
 
-export const exampleLogs: SimLog[] = [];
-
-function generateId() {
-    return 'pos_' + Math.random().toString(16).slice(2, 10);
-}
-
-const positionsCount = 25;
-
-for (let i = 0; i < positionsCount; i++) {
-    const positionId = generateId();
-
-    // random open time in last 50 days
-    const now = Date.now();
-    const openTimestamp =
-        now -
-        Math.random() * 50 * 24 * 60 * 60 * 1000 - // within 50 days
-        Math.random() * 6 * 60 * 60 * 1000; // ± few hours
-
-    // sell happens after buy (1h → 72h)
-    const closeTimestamp =
-        openTimestamp + (Math.random() * 72 + 1) * 60 * 60 * 1000;
-
-    // position amount (constant for open + close)
-    const amount = +(Math.random() * 0.29 + 0.01).toFixed(4);
-
-    // prices
-    const btcPriceOpen = 58000 + Math.random() * 4000;
-    const btcPriceClose = 58000 + Math.random() * 4000;
-
-    const openValue = +(amount * btcPriceOpen).toFixed(2);
-    const closeValue = +(amount * btcPriceClose).toFixed(2);
-
-    exampleLogs.push({
-        positionId,
-        date: openTimestamp,
-        action: 'buy',
-        amount,
-        value: openValue,
-    });
-
-    exampleLogs.push({
-        positionId,
-        date: closeTimestamp,
-        action: 'sell',
-        amount,
-        value: closeValue,
-    });
-}
-
-// natural timeline
-exampleLogs.sort((a, b) => a.value - b.value);
+// Example data
+export const simResData = {
+    asset: 'TSLA',
+    price: {
+        1735828200000: 390.6596984863,
+        1735831800000: 380.2699890137,
+        1735835400000: 382.4899902344,
+        1735839000000: 378.675201416,
+        1735842600000: 377.6199951172,
+        1735846200000: 377.3399963379,
+        1735849800000: 379.6149902344,
+        1735914600000: 381.6549987793,
+        1735918200000: 384.8399963379,
+        1735921800000: 395.8999938965,
+        1735925400000: 394.0,
+        1735929000000: 398.9200134277,
+        1735932600000: 404.9599914551,
+        1735936200000: 408.5599975586,
+    },
+    operations: {
+        1735828200000: [
+            {
+                id: 1,
+                type: 'buy',
+                amount: 1.5,
+                value: 585.9895477295,
+            },
+        ],
+        1735835400000: [
+            {
+                id: 2,
+                type: 'sell',
+                amount: 0.5,
+                value: 191.2449951172,
+            },
+        ],
+        1735839000000: [
+            {
+                id: 3,
+                type: 'buy',
+                amount: 1.0,
+                value: 378.675201416,
+            },
+        ],
+        1735846200000: [
+            {
+                id: 4,
+                type: 'sell',
+                amount: 1.0,
+                value: 377.3399963379,
+            },
+        ],
+        1735849800000: [
+            {
+                id: 5,
+                type: 'buy',
+                amount: 0.5,
+                value: 189.8074951172,
+            },
+        ],
+        1735918200000: [
+            {
+                id: 6,
+                type: 'sell',
+                amount: 1.0,
+                value: 384.8399963379,
+            },
+        ],
+        1735921800000: [
+            {
+                id: 7,
+                type: 'buy',
+                amount: 0.5,
+                value: 197.9499969482,
+            },
+        ],
+        1735925400000: [
+            {
+                id: 8,
+                type: 'sell',
+                amount: 1.0,
+                value: 398.9200134277,
+            },
+        ],
+        1735932600000: [
+            {
+                id: 9,
+                type: 'buy',
+                amount: 0.5,
+                value: 202.4799957275,
+            },
+        ],
+        1735936200000: [
+            {
+                id: 10,
+                type: 'sell',
+                amount: 1.0,
+                value: 408.5599975586,
+            },
+        ],
+    },
+};

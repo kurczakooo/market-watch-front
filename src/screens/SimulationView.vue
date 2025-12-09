@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import CurrentAssetNameBox from '../components/CurrentAssetNameBox.vue';
 import SimulationProgressBar from '../components/SimulationProgressBar.vue';
 import SimulationWalletInfo from '../components/SimulationWalletInfo.vue';
+import SimulationChart from '../components/SimulationChart.vue';
 import { useCurrentAssetStore } from '../stores/currentAsset';
 import { useSimulationStore, formatMoneyNumbers } from '../stores/simulation';
 import type { FormattedLog, SimLog } from '../types/simulation';
@@ -10,20 +11,26 @@ import type { FormattedLog, SimLog } from '../types/simulation';
 const simulationStore = useSimulationStore();
 const currentAssetStore = useCurrentAssetStore();
 
-const getFormattedLog = (log: SimLog): FormattedLog => {
-    var formattedLog: FormattedLog = {
-        positionId: log.positionId.toString(),
-        date: new Date(log.date).toLocaleDateString('en-GB'),
-        action: log.action,
-        amount: `${log.amount}   ${currentAssetStore.getCurrentTicker}`,
-        value: `${formatMoneyNumbers(log.value)}`,
-    };
+const getFormattedLogs = (logs: Map<number, SimLog[]>): FormattedLog[] => {
+    var formattedLogs: FormattedLog[] = [];
 
-    return formattedLog;
+    for (const [date, logList] of Object.entries(logs)) {
+        for (const log of logList) {
+            formattedLogs.push({
+                positionId: log.id.toString(),
+                date: new Date(parseInt(date)).toLocaleString('en-US'),
+                action: log.type,
+                amount: `${log.amount}`,
+                value: `${formatMoneyNumbers(log.value)}`,
+            });
+        }
+    }
+
+    return formattedLogs;
 };
 
 const formattedLogs = computed(() =>
-    simulationStore.getSimulationLogs.map(log => getFormattedLog(log))
+    getFormattedLogs(simulationStore.getSimulationLogs)
 );
 </script>
 
@@ -54,8 +61,7 @@ const formattedLogs = computed(() =>
 
         <!-- simulation chart -->
         <div class="common-sim-div">
-            <!-- fixed div to represent the chart in the future -->
-            <div class="w-full bg-black rounded-3xl m-2"></div>
+            <SimulationChart class="sim-chart-container" />
         </div>
 
         <div class="flex">
@@ -80,26 +86,29 @@ const formattedLogs = computed(() =>
             </div>
 
             <!-- simulation logs -->
-            <div
-                class="common-sim-div w-2/3 h-full max-h-80 py-3 overflow-y-scroll"
-            >
-                <div
-                    v-for="log in formattedLogs"
-                    :key="log.date"
-                    class="flex justify-between px-2 py-1"
-                    :class="
-                        log.action === 'sell'
-                            ? 'text-(--red)'
-                            : 'text-(--green)'
-                    "
-                >
-                    <span class="log text-(--unselectedtext)">{{
-                        log.positionId
-                    }}</span>
-                    <span class="log">{{ log.date.toLocaleString() }}</span>
-                    <span class="log uppercase">{{ log.action }}</span>
-                    <span class="log">{{ log.amount }}</span>
-                    <span class="log">{{ log.value }}</span>
+            <div class="common-sim-div w-2/3 max-h-100 p-3">
+                <div class="inner-log-container custom-scroll">
+                    <div
+                        v-for="log in formattedLogs"
+                        :key="log.date"
+                        class="log-box"
+                    >
+                        <span class="log text-(--unselectedtext)">{{
+                            log.positionId
+                        }}</span>
+                        <span class="log">{{ log.date.toLocaleString() }}</span>
+                        <span
+                            class="log uppercase"
+                            :class="
+                                log.action === 'sell'
+                                    ? 'text-(--red)'
+                                    : 'text-(--green)'
+                            "
+                            >{{ log.action }}</span
+                        >
+                        <span class="log">{{ log.amount }}</span>
+                        <span class="log">{{ log.value }}</span>
+                    </div>
                 </div>
             </div>
         </div>

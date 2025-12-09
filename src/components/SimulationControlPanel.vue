@@ -46,7 +46,7 @@ const onSimulationStart = () => {
             <Button
                 :class="[
                     simulationStore.getSimulationState === 'ready'
-                        ? 'sim-control-panel-button green-color hover:bg-(--selectedcomponentbackground)'
+                        ? 'sim-control-panel-button green-color'
                         : 'sim-control-panel-button sim-control-disabled',
                 ]"
                 label="Start Simulation"
@@ -58,7 +58,7 @@ const onSimulationStart = () => {
                     ['ongoing', 'finished'].includes(
                         simulationStore.getSimulationState
                     )
-                        ? 'sim-control-panel-button component-background-color hover:bg-(--selectedcomponentbackground)'
+                        ? 'sim-control-panel-button component-background-color'
                         : 'sim-control-panel-button sim-control-disabled',
                 ]"
                 label="Simulation Screen"
@@ -74,7 +74,7 @@ const onSimulationStart = () => {
                 "
             ></Button>
             <Button
-                class="sim-control-panel-button component-background-color hover:bg-(--selectedcomponentbackground)"
+                class="sim-control-panel-button component-background-color"
                 label="Reset Parameters"
             ></Button>
         </div>

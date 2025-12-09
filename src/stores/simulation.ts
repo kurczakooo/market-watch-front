@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import type { SimStatusType } from '../types/simulationPrep';
-import type { SimLog } from '../types/simulation';
-import { exampleLogs } from '../assets/utils/simulation';
+import type { SimLog, SimResultsData } from '../types/simulation';
+import { simResData } from '../assets/utils/simulation';
 
 export const useSimulationStore = defineStore('simulationStore', {
     state: (): {
@@ -15,7 +15,7 @@ export const useSimulationStore = defineStore('simulationStore', {
         simulationDeposit: number;
         simulationAssetHoldings: number;
         simulationPortfolioValue: number;
-        simulationLogs: SimLog[];
+        simulationData: SimResultsData;
     } => ({
         simulationState: 'ongoing',
         simulationProgress: 0,
@@ -23,7 +23,7 @@ export const useSimulationStore = defineStore('simulationStore', {
         simulationDeposit: 124231,
         simulationAssetHoldings: 43245,
         simulationPortfolioValue: 167476,
-        simulationLogs: exampleLogs,
+        simulationData: simResData,
     }),
 
     getters: {
@@ -33,7 +33,8 @@ export const useSimulationStore = defineStore('simulationStore', {
         getSimulationDeposit: state => state.simulationDeposit,
         getSimulationAssetHoldings: state => state.simulationAssetHoldings,
         getSimulationPortfolioValue: state => state.simulationPortfolioValue,
-        getSimulationLogs: state => state.simulationLogs,
+        getSimulationResultsData: state => state.simulationData,
+        getSimulationLogs: state => state.simulationData.operations,
 
         getSimulationDepositFormatted(state) {
             return formatMoneyNumbers(state.simulationDeposit);
@@ -65,9 +66,6 @@ export const useSimulationStore = defineStore('simulationStore', {
         calculateSimPortfolioValue() {
             this.simulationPortfolioValue =
                 this.getSimulationDeposit + this.getSimulationAssetHoldings;
-        },
-        addSimLog(newLog: SimLog) {
-            this.simulationLogs.push(newLog);
         },
     },
 });

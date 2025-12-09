@@ -23,13 +23,17 @@
         0 1px 2px var(--background),
         /* dark shadow */ 0 2px 4px var(--secondarycomponentbackground); /* soft shadow */
 
-    --shadow-medium: inset 0 1px 2px var(--unselectedtext) /* top shadow */,
+    --shadow-medium: inset 0 1px 2px var(--unselectedtext),
         0 2px 4px var(--background),
-        /* dark shadow */ 0 4px 7px var(--secondarycomponentbackground); /* soft shadow */
+        0 4px 7px var(--secondarycomponentbackground);
 
-    --shadow-large: inset 0 1px 2px var(--unselectedtext) /* top shadow */,
+    --shadow-large: inset 0 1px 2px var(--unselectedtext),
         0 4px 6px var(--background),
-        /* dark shadow */ 0 6px 10px var(--secondarycomponentbackground); /* soft shadow */
+        0 6px 10px var(--secondarycomponentbackground);
+
+    --shadow-active: inset 0 2px 4px var(--unselectedtext),
+        inset 0 -1px 3px var(--background),
+        0 0 0 var(--secondarycomponentbackground);
 }
 
 @layer base {
@@ -37,7 +41,7 @@
         background-color: var(--background);
         color: var(--selectedtext);
 
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
     }
 
     .unselected-text {
@@ -108,13 +112,110 @@
 
     /* HOME SCREEN */
 
+    .home-grid {
+        /* height: 100%; */
+        /* width: 100%; */
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 2.5fr 1fr;
+        /* background-color: var(--gold); */
+    }
+
     .additional-sim-wallet {
         padding-bottom: 2rem;
         border-bottom: 2px solid var(--unselectedtext);
     }
 
-    .add-top-pad {
-        padding-top: 2.5rem;
+    .period-choice-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 1.5rem;
+        margin-inline: calc(var(--spacing) * 2) /* 0.5rem = 8px */;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        background-color: var(--secondarycomponentbackground);
+
+        box-shadow: var(--shadow-small);
+    }
+
+    .period-button {
+        text-align: center;
+        font-weight: bold;
+        font-size: x-large;
+        padding: 0.75rem;
+        border-radius: 1.5rem;
+        background-color: var(--secondarycomponentbackground);
+
+        box-shadow: var(--shadow-small);
+    }
+
+    .period-button:hover {
+        background-color: var(--selectedcomponentbackground);
+        cursor: pointer;
+
+        box-shadow: var(--shadow-medium);
+    }
+
+    .period-button:active {
+        background-color: var(--selectedcomponentbackground);
+        cursor: pointer;
+        transform: scale(0.95);
+        box-shadow: var(--shadow-active);
+    }
+
+    .period-button.selected {
+        background-color: var(--selectedcomponentbackground);
+        box-shadow: var(--shadow-large);
+        outline-color: #ffffff;
+        outline-width: 5px;
+    }
+
+    .metric-buttons-container {
+        /* VERY IMPORTANT TO FIX THIS SHIT */
+        max-width: 88rem;
+        display: flex;
+        overflow-x: scroll;
+        gap: 1.5rem;
+
+        scrollbar-width: none;
+    }
+
+    .metric-button {
+        width: 15rem;
+        flex-shrink: 0;
+        text-align: center;
+        font-weight: bold;
+        font-size: x-large;
+        padding: 0.75rem;
+        border-radius: 1.5rem;
+        background-color: var(--secondarycomponentbackground);
+        box-shadow: var(--shadow-small);
+    }
+
+    .metric-button:hover {
+        background-color: var(--selectedcomponentbackground);
+        cursor: pointer;
+
+        box-shadow: var(--shadow-medium);
+    }
+
+    .metric-button:active {
+        background-color: var(--selectedcomponentbackground);
+        cursor: pointer;
+        transform: scale(0.97);
+        box-shadow: var(--shadow-active);
+    }
+
+    .metric-button.selected {
+        background-color: var(--selectedcomponentbackground);
+        box-shadow: var(--shadow-large);
+        outline-color: #ffffff;
+        outline-width: 5px;
+    }
+
+    .formatted-desc {
+        white-space: pre-line;
     }
 
     /* NEWS SCREEN */
@@ -172,6 +273,10 @@
         box-shadow: var(--shadow-small);
     }
 
+    .search-bar:hover {
+        box-shadow: var(--shadow-large);
+    }
+
     .search-bar-icon {
         position: absolute;
         left: calc(12.5% + 1rem);
@@ -211,6 +316,7 @@
 
     .search-asset-list-element:hover {
         background-color: var(--selectedcomponentbackground);
+        box-shadow: var(--shadow-medium);
     }
 
     /* SIMULATION SETUP SCREEN */
@@ -230,6 +336,10 @@
         outline: none;
 
         box-shadow: var(--shadow-medium);
+    }
+
+    .sim-param-input:hover {
+        box-shadow: var(--shadow-large);
     }
 
     .sim-param-input-icon {
@@ -263,6 +373,11 @@
         box-shadow: var(--shadow-medium);
     }
 
+    .sim-control-panel-button:hover {
+        background-color: var(--selectedcomponentbackground);
+        box-shadow: var(--shadow-large);
+    }
+
     .sim-control-disabled {
         background-color: var(--background);
         color: var(--unselectedtext);
@@ -284,11 +399,58 @@
         flex: 1;
         border-radius: 1.5rem;
         background-color: var(--secondarycomponentbackground);
+
+        box-shadow: var(--shadow-small);
+    }
+
+    .sim-chart-container {
+        background-color: var(--navbar);
+        border-radius: var(--radius-3xl) /* 1.5rem = 24px */;
+        margin: calc(var(--spacing) * 2); /*0.5rem = 8px;*/
+        padding: calc(var(--spacing) * 2); /*0.5rem = 8px;*/
+    }
+
+    .inner-log-container {
+        width: 100%;
+        height: 100%;
+        padding-block: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
+        overflow-y: auto;
+    }
+
+    .log-box {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: calc(var(--spacing) * 2) /* 0.5rem = 8px */;
+        padding-block: calc(var(--spacing) * 1) /* 0.25rem = 4px */;
+        border-radius: var(--radius-3xl) /* 1.5rem = 24px */;
+    }
+
+    .log-box:hover {
+        box-shadow: var(--shadow-small);
     }
 
     .log {
         width: 20%;
         font-weight: 500;
         font-size: large;
+    }
+
+    .custom-scroll::-webkit-scrollbar {
+        width: 15px;
+    }
+
+    .custom-scroll::-webkit-scrollbar-track {
+        background: var(--background);
+        border-radius: var(--radius-3xl);
+        margin: 8px 0;
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb {
+        background: var(--componentbackground);
+        border-radius: var(--radius-3xl);
+    }
+
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+        background: var(--unselectedtext);
     }
 }
