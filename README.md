@@ -4,7 +4,7 @@
 
 #### BACKLOG:
 
--   [] USE GETTERS FOR ASSET STORE EVERYWHERE INSTEAD OF ACCESING THE FIELDS!!!!!!!!!!!!!!!
+-   [x] USE GETTERS FOR ASSET STORE EVERYWHERE INSTEAD OF ACCESING THE FIELDS!!!!!!!!!!!!!!!
 
 ##### News screen
 
@@ -13,9 +13,15 @@
 ##### Browse screen
 
 -   [] in the backend, the logos need to stay locally in a folder like 'resources/static/logos/stocks/tesla.png', and in data send in format 'AssetListElementProps' the urls needs to be sth like that `"logoUrl": "http://localhost:8080/logos/stocks/tesla.png"`. Then when component like `<img :src="asset.logoUrl" alt="Tesla">` is placed, it automatically sends one more request to obtain the picture from the backend, without doing additional steps. No need to write the frontend request or a backend endpoint. Both the request and answer are served automatically in the background.
--   [] on the listings of assets on the browse screen, the plan in to send a request **EVERY SECOND** to update the prices in real time, and every price gets compared to the previous one, and blinks **red** on change to smaller, and **green** on a change to bigger price. Ambitious but will be worth it.
+-   [] on the listings of assets on the browse screen, the plan in to send a request **EVERY SECOND** to update the prices in real time, and every price gets compared to the previous one, and blinks **red** on change to smaller, and **green** on a change to bigger price.
 
 ##### Simulation prep screen
 
--   [] create validations for all parameter inputs
--   [] aggreagate all the input information for easy-iteration-like validation and processing, also remember to change the state of the simulation (and make the reset parameters button work)
+-   [x] create validations for all parameter inputs
+-   [x] aggreagate all the input information for easy-iteration-like validation and processing, also remember to change the state of the simulation (and make the reset parameters button work)
+-   [ ] repair the inputs validation and reseting the simulation
+-
+
+##### Simulation screen
+
+-   [] think of a way on how to give frontend the number of iterations (possibly just a number of records in the data for start-end period)

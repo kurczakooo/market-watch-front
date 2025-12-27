@@ -61,7 +61,7 @@ function formatLabel(label: string) {
 </script>
 
 <template>
-    <div class="body-background">
+    <div class="body-background flex-row">
         <!-- Left email-like news feed bar -->
         <div class="news-list">
             <template v-for="(articles, label) in groupedNews" :key="label">

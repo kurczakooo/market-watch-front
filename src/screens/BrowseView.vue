@@ -4,7 +4,7 @@ import FuzzySearch from 'fuzzy-search';
 import SearchBar from '../components/SearchBar.vue';
 import AssetSearchList from '../components/AssetSearchList.vue';
 import BrowseService from '../services/BrowseService';
-// import mockAssetData from '../assets/utils/browse';
+import mockAssetData from '../assets/utils/browse';
 import type { AssetData, AssetListElementProps } from '../types/browse';
 
 const assetData = ref<AssetData>({
@@ -20,7 +20,8 @@ const searchQuery = ref('');
 const filteredAssets = computed<AssetData>(() => {
     const query = searchQuery.value.trim();
 
-    const sortByName = (group: AssetListElementProps[]) => group.slice().sort((a, b) => a.name.localeCompare(b.name));
+    const sortByName = (group: AssetListElementProps[]) =>
+        group.slice().sort((a, b) => a.name.localeCompare(b.name));
 
     if (!query) {
         return {
@@ -52,8 +53,9 @@ function onSearch(query: string) {
 
 onMounted(async () => {
     try {
-        const response = await BrowseService.fetchBrowseAssetsData();
-        assetData.value = response.data;
+        // const response = await BrowseService.fetchBrowseAssetsData();
+        // assetData.value = response.data;
+        assetData.value = mockAssetData;
     } catch (error) {
         console.error('Error fetching asset data:', error);
     }
@@ -67,10 +69,22 @@ onMounted(async () => {
 
         <!-- Result Columns (below search bar) -->
         <div class="search-asset-list-container">
-            <AssetSearchList listTitle="Stocks" :assetsData="filteredAssets.stocks" />
-            <AssetSearchList listTitle="ETFs" :assetsData="filteredAssets.etfs" />
-            <AssetSearchList listTitle="Commodities" :assetsData="filteredAssets.commodities" />
-            <AssetSearchList listTitle="Crypto" :assetsData="filteredAssets.crypto" />
+            <AssetSearchList
+                listTitle="Stocks"
+                :assetsData="filteredAssets.stocks"
+            />
+            <AssetSearchList
+                listTitle="ETFs"
+                :assetsData="filteredAssets.etfs"
+            />
+            <AssetSearchList
+                listTitle="Commodities"
+                :assetsData="filteredAssets.commodities"
+            />
+            <AssetSearchList
+                listTitle="Crypto"
+                :assetsData="filteredAssets.crypto"
+            />
         </div>
     </div>
 </template>

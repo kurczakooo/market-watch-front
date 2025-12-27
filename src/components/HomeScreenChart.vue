@@ -1,47 +1,39 @@
 <script>
-import { homeChartData } from '../assets/utils/homeScreen';
-
+import { Line } from 'vue-chartjs';
 import {
+    Chart as ChartJS,
     CategoryScale,
     LinearScale,
+    PointElement,
+    LineElement,
     Tooltip,
-    Chart as ChartJS,
 } from 'chart.js';
+import { simResData } from '../assets/utils/simulation';
 
-import 'chartjs-chart-financial';
-
-import { Chart } from 'vue-chartjs';
-
-ChartJS.register(CategoryScale, LinearScale, Tooltip);
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Tooltip
+);
 
 export default {
-    name: 'HomeScreenChart',
-    components: { Chart },
-
+    name: 'SimulationChart',
+    components: { Line },
     data() {
-        const timestamps = Object.keys(homeChartData.Open);
-
-        // candle dataset format
-        const candleData = timestamps.map(ts => ({
-            x: new Date(parseInt(ts)), // use x, not t
-            o: homeChartData.Open[ts],
-            h: homeChartData.High[ts],
-            l: homeChartData.Low[ts],
-            c: homeChartData.Close[ts],
-        }));
-
         return {
             chartData: {
+                labels: Object.keys(simResData.price).map(timestamp =>
+                    new Date(parseInt(timestamp)).toLocaleDateString()
+                ),
                 datasets: [
+                    // main asset price line
                     {
-                        label: 'Candles',
-                        type: 'candlestick',
-                        data: candleData,
-                        color: {
-                            up: '#00ff00',
-                            down: '#ff2d2d',
-                            unchanged: '#999',
-                        },
+                        data: Object.values(simResData.price),
+                        borderColor: 'white',
+                        borderWidth: 2,
+                        pointRadius: 0,
                     },
                 ],
             },
@@ -51,13 +43,26 @@ export default {
                 maintainAspectRatio: false,
                 scales: {
                     x: {
-                        time: { unit: 'day' },
-                        ticks: { color: 'white' },
-                        grid: { color: 'rgba(255,255,255,0.2)' },
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 16,
+                            },
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.2)',
+                        },
                     },
                     y: {
-                        ticks: { color: 'white' },
-                        grid: { color: 'rgba(255,255,255,0.2)' },
+                        ticks: {
+                            color: 'white',
+                            font: {
+                                size: 16,
+                            },
+                        },
+                        grid: {
+                            color: 'rgba(255,255,255,0.2)',
+                        },
                     },
                 },
             },
@@ -67,5 +72,5 @@ export default {
 </script>
 
 <template>
-    <Chart type="candlestick" :data="chartData" :options="chartOptions" />
+    <Line :data="chartData" :options="chartOptions" />
 </template>

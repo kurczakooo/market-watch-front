@@ -13,6 +13,11 @@ const config = {
     // other configuration settings
     defaultLanguage: 'en',
     itemsPerPage: 10,
+
+    simulationStrategyAvailableIndicators: ['RSI', 'BB', 'MSA'] as const,
+    simulationStrategyAvailableRuleTypes: ['buy', 'sell'] as const,
+    simulationStrategyAvailableOperators: ['<', '>', '<=', '>=', '=='] as const,
+    simulationStrategyAvailableRuleLogicOperators: ['and', 'or'] as const,
 };
 
 export default config;

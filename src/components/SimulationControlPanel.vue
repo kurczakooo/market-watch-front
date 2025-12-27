@@ -6,43 +6,26 @@ import { useRouter } from 'vue-router';
 
 const simulationStore = useSimulationStore();
 const router = useRouter();
+const resetEmit = defineEmits<{ reset: [] }>();
 
 let intervalId: ReturnType<typeof setInterval> | null = null;
 
 const onSimulationStart = () => {
-    simulationStore.setSimState('ongoing');
-
-    if (intervalId) clearInterval(intervalId);
-
-    intervalId = setInterval(() => {
-        var currentProgress = simulationStore.getSimulationProgress;
-
-        simulationStore.setSimDuration(
-            simulationStore.getSimulationDuration + 1
-        );
-
-        if (currentProgress === 100) {
-            clearInterval(intervalId!);
-            intervalId = null;
-            simulationStore.setSimState('finished');
-            return;
-        }
-
-        simulationStore.setSimProgress(currentProgress + 1);
-
-        console.log(simulationStore.getSimulationDuration);
-        console.log(simulationStore.getSimulationProgress);
-    }, 1000);
+    simulationStore.startMockSimulation();
 };
+
+function emitResetParams() {
+    resetEmit('reset');
+}
 </script>
 
 <template>
     <!-- Simulation Controls -->
-    <div class="w-1/3 sim-control-panel">
+    <div class="sim-control-panel">
         <!-- Progress Bar -->
         <SimulationProgressBar />
         <!-- control buttons -->
-        <div class="flex-col flex gap-6">
+        <div class="flex flex-col h-full justify-center gap-6">
             <Button
                 :class="[
                     simulationStore.getSimulationState === 'ready'
@@ -76,6 +59,7 @@ const onSimulationStart = () => {
             <Button
                 class="sim-control-panel-button component-background-color"
                 label="Reset Parameters"
+                @click="emitResetParams"
             ></Button>
         </div>
     </div>

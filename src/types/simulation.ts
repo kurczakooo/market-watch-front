@@ -1,10 +1,10 @@
-// type representing a sim log object
-export interface SimLog {
-    id: number;
-    type: 'buy' | 'sell';
-    amount: number;
-    value: number;
-}
+// values accepted as simulation state
+export type SimStatusType =
+    | 'not ready'
+    | 'ready'
+    | 'ongoing'
+    | 'finished'
+    | 'cancelled';
 
 export interface FormattedLog {
     positionId: string;
@@ -14,8 +14,19 @@ export interface FormattedLog {
     value: string;
 }
 
+export interface SimOperationInfoBatch {
+    id: number;
+    type: 'buy' | 'sell';
+    amount: number;
+    value: number;
+    cashAfter: number;
+    assetOwnedAfter: number;
+    ownedAssetValueAfter: number;
+    portfolioValueAfter: number;
+}
+
 export interface SimResultsData {
     asset: string;
-    price: Map<number, number>;
-    operations: Map<number, SimLog[]>;
+    price: Record<number, number>;
+    operations: Record<number, SimOperationInfoBatch[]>;
 }

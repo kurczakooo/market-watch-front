@@ -1,11 +1,23 @@
 <script setup lang="ts">
+import { nextTick, ref, watch } from 'vue';
 import type { NewsDisplayProps } from '../types/news';
 
 const props = defineProps<NewsDisplayProps>();
+const container = ref<HTMLElement | null>(null);
+
+watch(
+    () => props.article?.id, // albo slug, url, cokolwiek unikalnego
+    async () => {
+        await nextTick();
+        if (container.value) {
+            container.value.scrollTop = 0;
+        }
+    }
+);
 </script>
 
 <template>
-    <div class="news-detail">
+    <div ref="container" class="news-detail">
         <h1 class="text-3xl font-bold mb-4">
             {{ props.article.title }}
         </h1>
@@ -17,6 +29,11 @@ const props = defineProps<NewsDisplayProps>();
             }}, by
             {{ props.article.author }}
         </p>
-        <div class="flex-1" v-html="props.article.content"></div>
+        <div class="flex-1">
+            <article
+                class="prose max-w-full space-y-4"
+                v-html="props.article.content"
+            ></article>
+        </div>
     </div>
 </template>

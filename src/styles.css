@@ -76,6 +76,7 @@
     .bg-navbar {
         background-color: var(--navbar);
         color: var(--selectedtext);
+        max-height: 13dvh;
     }
 
     .tab-title {
@@ -102,23 +103,30 @@
         max-width: 1920px;
         margin: 0 auto;
 
+        width: 100%;
+        height: 87dvh;
+
         padding-left: 0.5rem;
         padding-right: 0.5rem;
         padding-top: 1.25rem;
 
-        min-height: calc(100vh - 13vh); /* minus navbar height */
         background-color: var(--background);
     }
 
     /* HOME SCREEN */
 
     .home-grid {
-        /* height: 100%; */
-        /* width: 100%; */
         display: grid;
         grid-template-columns: 1fr 3fr;
         grid-template-rows: 2.5fr 1fr;
-        /* background-color: var(--gold); */
+        height: 74dvh;
+    }
+
+    .home-grid > * {
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+        /* border: 1px solid #444; */
     }
 
     .additional-sim-wallet {
@@ -131,7 +139,7 @@
         flex-direction: column;
         justify-content: space-between;
         border-radius: 1.5rem;
-        margin-inline: calc(var(--spacing) * 2) /* 0.5rem = 8px */;
+        margin-inline: calc(var(--spacing) * 2);
         padding-top: 2rem;
         padding-bottom: 2rem;
         background-color: var(--secondarycomponentbackground);
@@ -182,12 +190,12 @@
     }
 
     .metric-button {
-        width: 15rem;
+        width: 13rem;
         flex-shrink: 0;
         text-align: center;
         font-weight: bold;
         font-size: x-large;
-        padding: 0.75rem;
+        padding: 0.5rem;
         border-radius: 1.5rem;
         background-color: var(--secondarycomponentbackground);
         box-shadow: var(--shadow-small);
@@ -224,6 +232,8 @@
         cursor: pointer;
         padding: 0.5rem 1rem 1rem 1rem;
         border-bottom: 1px solid var(--componentbackground);
+
+        box-shadow: var(--shadow-large);
     }
 
     .news-block:hover {
@@ -239,16 +249,16 @@
         width: 33.3333%;
         overflow-y: auto;
         scrollbar-width: none;
-        height: 100vh;
+        height: 100%;
     }
 
     .news-detail {
         flex: 1;
         width: 66.6667%;
         padding: 1.5rem;
-        overflow-y: auto;
         scrollbar-width: none;
-        padding-bottom: 10rem;
+        overflow-y: auto;
+        height: 100%;
     }
 
     /* BROWSE SCREEN */
@@ -290,7 +300,7 @@
     .search-asset-list-container {
         display: flex;
         overflow: hidden;
-        height: calc(100vh - 13vh); /* minus navbar height */
+        height: 100%;
     }
 
     .search-asset-list {
@@ -302,7 +312,7 @@
         gap: 0.5rem;
         overflow-y: auto;
         scrollbar-width: none;
-        padding-bottom: 5rem;
+        padding-bottom: 8rem;
 
         box-shadow: var(--shadow-large);
     }
@@ -322,8 +332,7 @@
     /* SIMULATION SETUP SCREEN */
 
     .sim-param-input-container {
-        /* width: fit-content; */
-        padding: 1rem 0;
+        flex-basis: calc(1 / 4 * 100%);
         position: relative;
     }
 
@@ -342,9 +351,29 @@
         box-shadow: var(--shadow-large);
     }
 
+    .strat-dropdown-container {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        position: absolute;
+        flex-basis: calc(1 / 4 * 100%);
+        border-radius: 2.5rem;
+        background-color: var(--secondarycomponentbackground);
+        gap: 0.5rem;
+    }
+
+    .strat-dropdown-option {
+        color: var(--selectedtext);
+        padding: 1rem 1rem 1rem 1rem;
+        border-radius: 2.5rem;
+    }
+
+    .strat-dropdown-option:hover {
+        background-color: var(--selectedcomponentbackground);
+    }
+
     .sim-param-input-icon {
         position: absolute;
-        margin-left: 1rem;
         top: 50%;
         transform: translateY(-50%);
         color: var(--unselectedtext);
@@ -352,9 +381,28 @@
         pointer-events: none;
     }
 
+    .sim-param-error-outline {
+        outline: 3px solid var(--red);
+    }
+
+    .sim-param-input-error {
+        color: var(--red);
+        font-weight: 500;
+        font-size: small;
+        margin-left: 1rem;
+        position: absolute;
+    }
+
+    .sim-param-extra-placeholer {
+        color: var(--unselectedtext);
+        font-weight: 500;
+        margin-left: 1rem;
+        bottom: 100%;
+        position: absolute;
+    }
+
     .sim-control-panel {
-        flex-direction: column;
-        display: flex;
+        height: 100%;
         border-radius: var(--radius-3xl) /* 1.5rem = 24px */;
         padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
         background-color: var(--secondarycomponentbackground);
@@ -413,7 +461,7 @@
     .inner-log-container {
         width: 100%;
         height: 100%;
-        padding-block: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
+        padding-block: calc(var(--spacing) * 3);
         overflow-y: auto;
     }
 

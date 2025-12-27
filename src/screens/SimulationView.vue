@@ -6,23 +6,28 @@ import SimulationWalletInfo from '../components/SimulationWalletInfo.vue';
 import SimulationChart from '../components/SimulationChart.vue';
 import { useCurrentAssetStore } from '../stores/currentAsset';
 import { useSimulationStore, formatMoneyNumbers } from '../stores/simulation';
-import type { FormattedLog, SimLog } from '../types/simulation';
+import type { FormattedLog, SimOperationInfoBatch } from '../types/simulation';
+import PercentageChangeIndicator from '../components/PercentageChangeIndicator.vue';
 
 const simulationStore = useSimulationStore();
 const currentAssetStore = useCurrentAssetStore();
 
-const getFormattedLogs = (logs: Map<number, SimLog[]>): FormattedLog[] => {
+const getFormattedLogs = (
+    logs: Record<number, SimOperationInfoBatch[]>
+): FormattedLog[] => {
     var formattedLogs: FormattedLog[] = [];
 
-    for (const [date, logList] of Object.entries(logs)) {
-        for (const log of logList) {
-            formattedLogs.push({
-                positionId: log.id.toString(),
-                date: new Date(parseInt(date)).toLocaleString('en-US'),
-                action: log.type,
-                amount: `${log.amount}`,
-                value: `${formatMoneyNumbers(log.value)}`,
-            });
+    if (logs) {
+        for (const [date, logList] of Object.entries(logs)) {
+            for (const log of logList) {
+                formattedLogs.push({
+                    positionId: log.id.toString(),
+                    date: new Date(parseInt(date)).toLocaleString('en-US'),
+                    action: log.type,
+                    amount: `${log.amount} ${currentAssetStore.getCurrentTicker}`,
+                    value: `${formatMoneyNumbers(log.value)}`,
+                });
+            }
         }
     }
 
@@ -32,6 +37,12 @@ const getFormattedLogs = (logs: Map<number, SimLog[]>): FormattedLog[] => {
 const formattedLogs = computed(() =>
     getFormattedLogs(simulationStore.getSimulationLogs)
 );
+
+const percentageChange = 13.76;
+
+const isSimFinished = (): boolean => {
+    return simulationStore.getSimulationState === 'finished';
+};
 </script>
 
 <template>
@@ -68,21 +79,43 @@ const formattedLogs = computed(() =>
             <!-- wallet info -->
             <div class="w-1/3 py-10 flex-col flex gap-6 ml-2">
                 <SimulationWalletInfo
-                    title="Deposit:"
-                    :amount="simulationStore.getSimulationDepositFormatted"
+                    :title="
+                        isSimFinished() ? `Final cash balance` : `Cash balance`
+                    "
+                    :amount="simulationStore.getSimulationCashFormatted"
                 />
                 <SimulationWalletInfo
-                    :title="`${currentAssetStore.getCurrentTicker} holdings:`"
-                    :amount="
-                        simulationStore.getSimulationAssetHoldingsFormatted
+                    :title="
+                        isSimFinished()
+                            ? `Final ${currentAssetStore.getCurrentTicker} owned:`
+                            : `${currentAssetStore.getCurrentTicker} owned:`
                     "
+                    :amount="simulationStore.getSimulationAssetOwned.toString()"
                 />
                 <SimulationWalletInfo
-                    title="Portfolio value:"
-                    :amount="
-                        simulationStore.getSimulationPortfolioValueFormatted
+                    :title="
+                        isSimFinished()
+                            ? `Final ${currentAssetStore.getCurrentTicker} value:`
+                            : `${currentAssetStore.getCurrentTicker} value:`
                     "
+                    :amount="simulationStore.getSimulationAssetValueFormatted"
                 />
+                <div class="flex">
+                    <SimulationWalletInfo
+                        :title="
+                            isSimFinished()
+                                ? `Final Portfolio value`
+                                : `Portfolio value`
+                        "
+                        :amount="
+                            simulationStore.getSimulationPortfolioValueFormatted
+                        "
+                    />
+                    <PercentageChangeIndicator
+                        v-if="isSimFinished()"
+                        :percentagePriceChange="percentageChange"
+                    />
+                </div>
             </div>
 
             <!-- simulation logs -->
@@ -93,9 +126,9 @@ const formattedLogs = computed(() =>
                         :key="log.date"
                         class="log-box"
                     >
-                        <span class="log text-(--unselectedtext)">{{
+                        <!-- <span class="log text-(--unselectedtext)">{{
                             log.positionId
-                        }}</span>
+                        }}</span> -->
                         <span class="log">{{ log.date.toLocaleString() }}</span>
                         <span
                             class="log uppercase"
@@ -108,6 +141,12 @@ const formattedLogs = computed(() =>
                         >
                         <span class="log">{{ log.amount }}</span>
                         <span class="log">{{ log.value }}</span>
+                    </div>
+                    <div
+                        v-if="isSimFinished()"
+                        class="flex flex-1 justify-center text-xl font-mono font-semibold unselected-text"
+                    >
+                        ------ SIMULATION FINISHED ------
                     </div>
                 </div>
             </div>

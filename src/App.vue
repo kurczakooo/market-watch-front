@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import NavBar from './components/NavBar.vue';
 import { RouterView } from 'vue-router';
 import { useCurrentAssetStore } from './stores/currentAsset';
+import { useSimulationStore } from './stores/simulation';
 
 const currentAssetStore = useCurrentAssetStore();
 
