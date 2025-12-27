@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import config from '../config';
 import {
     type SimRuleGroup,
@@ -28,18 +28,29 @@ function createCondition(action: SimAvailableRuleTypes) {
     });
     console.log(simulationStrat.value);
 }
+
+const areNewRulesAllowed = ref(true);
+watch(
+    () => simulationStrat.value.rules.length,
+    rulesCount => {
+        areNewRulesAllowed.value = rulesCount < 4;
+    }
+);
 </script>
 
 <template>
     <h1 class="component-name mt-8">Trading Strategy</h1>
-    <div class="flex flex-wrap gap-10 py-5">
+    <div
+        class="flex flex-wrap gap-10 py-5"
+        :class="{ 'pointer-events-none opacity-50': !areNewRulesAllowed }"
+    >
         <AddRuleDropdown @select="createCondition" />
     </div>
     <div class="flex-1 flex-col flex gap-5 py-5">
         <StrategyConditionComponent
             v-for="rule in simulationStrat?.rules"
             :rule-type="rule.action"
-            :indicators="config.simulationStrategyAvailableIndicators"
+            :indicators="Object.keys(config.AppAvailableMetrics)"
             :operators="config.simulationStrategyAvailableOperators"
             :logic-operators="
                 config.simulationStrategyAvailableRuleLogicOperators

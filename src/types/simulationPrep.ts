@@ -32,7 +32,7 @@ export interface SimStartParamsDict {
 // SIMULATION STATEGY TYPES
 
 export type SimAvailableIndicators =
-    (typeof config.simulationStrategyAvailableIndicators)[number];
+    (keyof typeof config.AppAvailableMetrics)[number];
 
 export type SimAvailableRuleTypes =
     (typeof config.simulationStrategyAvailableRuleTypes)[number];

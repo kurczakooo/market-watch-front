@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import config from '../config';
 
-const metrics = ['RSI', 'BB', 'EMA', 'MACD', 'MAD', 'MAE', 'VU', 'RSI'];
+type MetricKey = keyof typeof config.AppAvailableMetrics;
+const metrics = Object.keys(config.AppAvailableMetrics) as MetricKey[];
+const selectedMetric = ref<MetricKey | null>(null);
+const selectMetricEmit = defineEmits<{
+    (e: 'select', metric: MetricKey | ''): void;
+}>();
 
-const selectedMetric = ref<string | null>(null);
-
-const selectMetric = (metric: string) => {
-    console.log(metric);
-    selectedMetric.value = metric;
+const selectMetric = (metric: MetricKey) => {
+    if (selectedMetric.value === metric) {
+        selectedMetric.value = null;
+        selectMetricEmit('select', '');
+    } else {
+        selectedMetric.value = metric;
+        selectMetricEmit('select', metric);
+    }
 };
 </script>
 
@@ -22,5 +31,8 @@ const selectMetric = (metric: string) => {
         >
             {{ metric }}
         </div>
+    </div>
+    <div class="formatted-desc" v-if="selectedMetric">
+        {{ config.AppAvailableMetrics[selectedMetric] }}
     </div>
 </template>
