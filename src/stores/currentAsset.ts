@@ -1,16 +1,19 @@
-import { defineStore } from 'pinia';
+import { defineStore, getActivePinia } from 'pinia';
 // import type { CurrentAssetData } from '../types/currentAsset';
 import type { AssetListElementProps } from '../types/browse';
 import assetList from '../assets/utils/browse';
 import { formatMoneyNumbers } from '../stores/simulation';
+import type { SimAvailableIndicators } from '../types/simulationPrep';
 
 export const useCurrentAssetStore = defineStore('currentAssetStore', {
     state: (): {
         initialized: boolean;
         assetData: AssetListElementProps;
+        activeIndicator: SimAvailableIndicators | '';
     } => ({
         initialized: false,
         assetData: {} as AssetListElementProps,
+        activeIndicator: '',
     }),
 
     getters: {
@@ -25,6 +28,8 @@ export const useCurrentAssetStore = defineStore('currentAssetStore', {
         getCurrentPrice: state => state.assetData.currentPrice,
 
         getCurrentTicker: state => state.assetData.ticker,
+
+        getActiveIndicator: state => state.activeIndicator,
     },
 
     actions: {
@@ -50,6 +55,10 @@ export const useCurrentAssetStore = defineStore('currentAssetStore', {
             if (this.assetData) {
                 this.assetData.currentPrice = price;
             }
+        },
+
+        SetActiveIndicator(indicator: SimAvailableIndicators | '') {
+            this.activeIndicator = indicator;
         },
     },
 });

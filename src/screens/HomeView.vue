@@ -11,6 +11,7 @@ const currentAssetStore = useCurrentAssetStore();
 
 function addMetricToChart(metric: SimAvailableIndicators | '') {
     console.log(metric);
+    currentAssetStore.SetActiveIndicator(metric);
 }
 </script>
 
