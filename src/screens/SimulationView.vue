@@ -50,7 +50,7 @@ const isSimFinished = (): boolean => {
         <!-- overlay shown when simulation is not ongoing or finished -->
         <div
             v-if="
-                !['ongoing', 'finished'].includes(
+                !['ongoing', 'finished', 'ready'].includes(
                     simulationStore.getSimulationState
                 )
             "

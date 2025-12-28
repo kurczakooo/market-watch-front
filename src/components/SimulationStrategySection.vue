@@ -46,7 +46,7 @@ watch(
     >
         <AddRuleDropdown @select="createCondition" />
     </div>
-    <div class="flex-1 flex-col flex gap-5 py-5">
+    <div class="flex-1 flex-col flex gap-3">
         <StrategyConditionComponent
             v-for="rule in simulationStrat?.rules"
             :rule-type="rule.action"

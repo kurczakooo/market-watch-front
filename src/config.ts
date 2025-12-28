@@ -39,7 +39,7 @@ const config = {
     } as const,
 
     simulationStrategyAvailableRuleTypes: ['buy', 'sell'] as const,
-    simulationStrategyAvailableOperators: ['<', '>', '<=', '>=', '=='] as const,
+    simulationStrategyAvailableOperators: ['<', '>', '<=', '>=', '='] as const,
     simulationStrategyAvailableRuleLogicOperators: ['and', 'or'] as const,
 };
 

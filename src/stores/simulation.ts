@@ -200,7 +200,7 @@ export const useSimulationStore = defineStore('simulationStore', {
 
             // 3️⃣ iteracyjne dokładanie danych
             for (let i = 1; i < timestamps.length; i++) {
-                await this.sleep(500);
+                await this.sleep(100);
 
                 const ts = timestamps[i];
 

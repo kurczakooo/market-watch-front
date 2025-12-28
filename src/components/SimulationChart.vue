@@ -26,6 +26,9 @@ const chartData = computed(() => {
     const prices = simulationStore.getSimulationResultsPrices;
     const operations = simulationStore.getSimulationResultsOperations;
 
+    const opsCount = Object.keys(operations).length;
+    const pointRadius = opsCount < 200 ? 6 : opsCount <= 400 ? 4 : 3;
+
     const timestamps = Object.keys(prices)
         .map(Number)
         .sort((a, b) => a - b);
@@ -42,7 +45,7 @@ const chartData = computed(() => {
                 }),
                 pointBackgroundColor: 'green',
                 pointBorderColor: 'green',
-                pointRadius: 6,
+                pointRadius: pointRadius,
                 borderWidth: 0,
                 showLine: false,
             },
@@ -55,7 +58,7 @@ const chartData = computed(() => {
                 }),
                 pointBackgroundColor: 'red',
                 pointBorderColor: 'red',
-                pointRadius: 6,
+                pointRadius: pointRadius,
                 borderWidth: 0,
                 showLine: false,
             },

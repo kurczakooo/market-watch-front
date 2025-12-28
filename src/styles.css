@@ -356,10 +356,13 @@
         flex: 1;
         flex-direction: column;
         position: absolute;
-        flex-basis: calc(1 / 4 * 100%);
-        border-radius: 2.5rem;
+        border-radius: 2rem 2rem 1.5rem 1.5rem;
         background-color: var(--secondarycomponentbackground);
         gap: 0.5rem;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+
+        box-shadow: var(--shadow-medium);
     }
 
     .strat-dropdown-option {
@@ -370,6 +373,18 @@
 
     .strat-dropdown-option:hover {
         background-color: var(--selectedcomponentbackground);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .strat-component-container {
+        display: flex;
+        align-items: center;
+        gap: calc(var(--spacing) * 4);
+        padding: 0.5rem;
+        margin-right: 1rem;
+        border-radius: 1rem;
+
+        background-color: var(--secondarycomponentbackground);
     }
 
     .sim-param-input-icon {
